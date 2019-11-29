@@ -34,7 +34,7 @@
 
 void cadastrar_compra(void){
     
-    FILE *arq;
+    FILE *arq
     cliente client;
     compra buy;
     

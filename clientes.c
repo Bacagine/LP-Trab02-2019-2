@@ -83,16 +83,15 @@ void listar_clientes(void){
     
     system("clear"); // Limpa o terminal antes de mostrar os clientes cadastrados
     printf("\t\tClientes Cadastrados\n");
-	printf("********************************************************\n");
-	printf("#Codigo     Nome do Cliente                Telefone\n");
-	printf("********************************************************\n");
+	printf("***************************************************************************\n");
+	printf("#Codigo     Nome do Cliente                                    Telefone\n");
+	printf("***************************************************************************\n");
 	while (fread(&client, sizeof(cliente), 1, arq) > 0) {
-		printf("%06d      %-30.30s %s\n", client.codigo_cliente, /* Consertar print 
-                                                                          mais tarde */
-                                                client.nome_cliente, 
+		printf("%06d      %-50.50s %-14.14s\n", client.codigo_cliente,
+                                                client.nome_cliente,
                                                 client.telefone);
 	}
-	printf("********************************************************\n");
+	printf("***************************************************************************\n");
 	fclose(arq); // Fecha o arquivo clientes.dat
     
     getchar();
