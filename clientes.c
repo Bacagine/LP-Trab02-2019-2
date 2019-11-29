@@ -60,11 +60,10 @@ void cadastrar_cliente(void){
     fwrite(&client, sizeof(cliente), 1, arq);
 	fclose(arq); // Fecha o arquivo clientes.dat
     
-    system("clear");      // Limpa o terminal após o termino do cadastrado do cliente
+    system("clear");
 	puts(CLIENT_SUCESS); // Printa no terminal a mensagem: "Cliente cadastrado com sucesso!"
     getchar();
     getchar();
-    system("clear");  // Limpa o terminal antes de voltar para o menu
 }
 
 void listar_clientes(void){
@@ -83,15 +82,15 @@ void listar_clientes(void){
     
     system("clear"); // Limpa o terminal antes de mostrar os clientes cadastrados
     printf("\t\tClientes Cadastrados\n");
-	printf("***************************************************************************\n");
+	printf("*****************************************************************************\n");
 	printf("#Codigo     Nome do Cliente                                    Telefone\n");
-	printf("***************************************************************************\n");
+	printf("*****************************************************************************\n");
 	while (fread(&client, sizeof(cliente), 1, arq) > 0) {
 		printf("%06d      %-50.50s %-14.14s\n", client.codigo_cliente,
                                                 client.nome_cliente,
                                                 client.telefone);
 	}
-	printf("***************************************************************************\n");
+	printf("*****************************************************************************\n");
 	fclose(arq); // Fecha o arquivo clientes.dat
     
     getchar();
@@ -112,5 +111,12 @@ void consultar_cliente(void){
         system("clear"); // Limpa o terminal antes de voltar para o menu
         return;
     }
+    
+    system("clear");
+    
+    printf("********Consultar Cliente********\n");
+    printf("Digite o nome do cliente: ");
+// Provavelmento o scanf abaixo está errado mais eu vou fazer mesmo assim
+    scanf("%s", client.nome_cliente);
     
 }

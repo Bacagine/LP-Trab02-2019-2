@@ -34,9 +34,9 @@ int main(void){
     system("clear"); // Limpa o terminal ao executar o programa
     do{
         printf("*************************MENU*************************\n");
-        printf("* 1) Cadastrar Cliente          (em fase de testes)  *\n");
-        printf("* 2) Listar Clientes            (em fase de testes)  *\n");
-        printf("* 3) Consultar Clientes         (em andamento)       *\n");
+        printf("* 1) Cadastrar Cliente                               *\n");
+        printf("* 2) Listar Clientes                                 *\n");
+        printf("* 3) Consultar Clientes         (em fase de testes)  *\n");
         printf("* 4) Cadastrar Compras          (em fase de testes)  *\n");
         printf("* 5) Listar Compras por Data    (em andamento)       *\n");
         printf("* 6) Listar Compras por Cliente (em andamento)       *\n");

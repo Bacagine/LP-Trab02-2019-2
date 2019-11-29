@@ -34,9 +34,9 @@
 
 void cadastrar_compra(void){
     
-    FILE *arq
-    cliente client;
+    FILE *arq;
     compra buy;
+    data date;
     
     if((arq = fopen(ARQ_COMPRA, "ab")) == NULL) {
         system("clear"); // Limpa o terminal ao entrar aqui
@@ -51,12 +51,17 @@ void cadastrar_compra(void){
     system("clear");  // Limpa o terminal quando o usuario escolhe a opção Cadastrar Compras
     printf("********Nova Compra********\n");
 	printf("Número da compra: %d\n", buy.numero_compra); // Mostra o Número da compra que será cadastrada
-	printf("Codigo do cliente: ");       // DEU
-    scanf(" %d", client.codigo_cliente);//   RUIM AQUI
+	printf("Codigo do cliente: ");   
+    scanf("%d", &buy.codigo_cliente);
     printf("Valor da compra: ");
-	scanf(" %f", buy.valor);
-    printf("Data: ");
-    scanf(" %s", buy.dt_compra);
+	scanf("%f", &buy.valor);
+    printf("Data\n");
+    printf("Dia:");
+    scanf("%d", &date.dia);
+    printf("Mes: ");
+    scanf("%d", &date.mes);
+    printf("Ano: ");
+    scanf("%d", &date.ano);
 	
     fwrite(&buy, sizeof(compra), 1, arq);
 	fclose(arq); // Fecha o arquivo compras.dat
@@ -73,7 +78,7 @@ void listar_compras_data(void){
     FILE *arq;
     compra buy;
     
-    if((arq = fopen(ARQ_CLIENTE, "rb")) == NULL) {
+    if((arq = fopen(ARQ_COMPRA, "rb")) == NULL) {
         system("clear");
         puts(NOT_BUY);
         getchar();
@@ -84,9 +89,9 @@ void listar_compras_data(void){
     
     system("clear");
     printf("\t\tCompras Cadastrados\n");
-	printf("********************************************************\n");
-	printf("#Numero Codigo cliente     Valor                Data\n");
-	printf("********************************************************\n");
+	printf("**********************************************************\n");
+	printf("#Numero Codigo do cliente     Valor                Data\n");
+	printf("**********************************************************\n");
 	while (fread(&buy, sizeof(compra), 1, arq) > 0) {
 		printf("%06d      %06d      %f %s\n", buy.numero_compra, /* Consertar print 
                                                                           mais tarde */
@@ -94,7 +99,7 @@ void listar_compras_data(void){
                                                 buy.valor,
                                                 buy.dt_compra);
 	}
-	printf("********************************************************\n");
+	printf("**********************************************************\n");
 	fclose(arq); // Fecha o arquivo compras.dat
     
     getchar();
@@ -113,7 +118,7 @@ void listar_compras_cliente(void){
     FILE *arq;
     compra buy;
     
-    if((arq = fopen(ARQ_CLIENTE, "rb")) == NULL) {
+    if((arq = fopen(ARQ_COMPRA, "rb")) == NULL) {
         system("clear"); // Limpa o terminal ao entrar aqui
         puts(NOT_BUY);
         getchar();
