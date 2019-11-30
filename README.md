@@ -15,7 +15,7 @@ Ciro Cirne Trindade [(site do Professor Ciro)](https://sites.google.com/site/cir
 
 ## **Desenvolvedores**
 
-Gustavo Bacagine <gustavobacagine@protonmail.com>
+Gustavo Bacagine <gustavo.bacagine@protonmail.com>
 
 Lucas Pereira de Matos <lucas.pereira.matos.000@gmail.com>
 

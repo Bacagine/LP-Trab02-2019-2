@@ -13,11 +13,12 @@
  *                  Caio Elias Emerick Regino <caioregino.147@gmail.com>          *
  *                                                                                *
  * Data de inicio: 21/11/2019                                                     *
- * Data da última modificação: 27/11/2019                                         *
+ * Data da última modificação: 30/11/2019                                         *
  **********************************************************************************/
 
 #include <stdio.h>
-#include <stdlib.h>    // Biblioteca usada para o system("clear")
+#include <stdlib.h>         // Biblioteca usada para o system("clear")
+#include "clear_buffer.h"  // Biblioteca para poder usar a função clear_buffer()
 #include "clientes.h" /* --> Biblioteca com os 
                          prototipos das funções do cliente */
 #include "compras.h" /* --> Biblioteca com os 
@@ -33,16 +34,16 @@ int main(void){
     
     system("clear"); // Limpa o terminal ao executar o programa
     do{
-        printf("*************************MENU*************************\n");
-        printf("* 1) Cadastrar Cliente                               *\n");
-        printf("* 2) Listar Clientes                                 *\n");
-        printf("* 3) Consultar Clientes         (em fase de testes)  *\n");
-        printf("* 4) Cadastrar Compras          (em fase de testes)  *\n");
-        printf("* 5) Listar Compras por Data    (em andamento)       *\n");
-        printf("* 6) Listar Compras por Cliente (em andamento)       *\n");
-        printf("* 0) Sair                                            *\n");
-        printf("******************************************************\n");
-        printf(">> ");
+        fprintf(stdout, "*************************MENU*************************\n");
+        fprintf(stdout, "* 1) Cadastrar Cliente                               *\n");
+        fprintf(stdout, "* 2) Listar Clientes                                 *\n");
+        fprintf(stdout, "* 3) Consultar Clientes         (em fase de testes)  *\n");
+        fprintf(stdout, "* 4) Cadastrar Compras          (em fase de testes)  *\n");
+        fprintf(stdout, "* 5) Listar Compras por Data    (em andamento)       *\n");
+        fprintf(stdout, "* 6) Listar Compras por Cliente (em andamento)       *\n");
+        fprintf(stdout, "* 0) Sair                                            *\n");
+        fprintf(stdout, "******************************************************\n");
+        fprintf(stdout, ">> ");
         scanf("%d", &op);
         
         switch(op){
@@ -69,8 +70,8 @@ int main(void){
             default:
                 system("clear"); // Limpa o terminal ao entrar aqui
                 puts(ERROR);    // Mostra uma mensagem de erro para o usuário
+                clear_buffer();
                 getchar();     // Semelhante ao system("pause"); do Windows
-                getchar();
                 system("clear"); // Limpa o terminal antes de voltar para o menu
 		}
 		

@@ -14,11 +14,12 @@
  *                  Caio Elias Emerick Regino <caioregino.147@gmail.com>           *
  *                                                                                 *
  * Data de inicio: 21/11/2019                                                      *
- * Data da última modificação: 27/11/2019                                          *
+ * Data da última modificação: 30/11/2019                                          *
  ***********************************************************************************/
 
 #include <stdio.h>
-#include <stdlib.h>    // Biblioteca usada para o system("clear")
+#include <stdlib.h>         // Biblioteca para poder usar a função system("clear")
+#include "clear_buffer.h"  // Biblioteca para poder usar a função clear_buffer()
 #include "clientes.h" /* --> Biblioteca com os 
                          prototipos das funções do cliente */
 #include "compras.h" /* --> Biblioteca com os 
@@ -32,17 +33,17 @@
                                                                 mostrada caso 
                                                                 não haja nenhum
                                                                 cliente cadastrado */
+FILE *arq;       // Declarando uma variavel de arquivo
+cliente client; //  Declarando uma estrutura do tipo cliente
 
 void cadastrar_cliente(void){
-    
-    FILE *arq; // Declarando uma variavel de arquivo
-    cliente client;
     
     if((arq = fopen(ARQ_CLIENTE, "ab")) == NULL) {
         system("clear"); // Limpa o terminal ao entrar aqui
         fprintf(stderr, "Erro: não foi possível abrir o arquivo clientes.dat!\n");
+        clear_buffer();
         getchar();
-        getchar();
+//         getchar();
         system("clear"); // Limpa o terminal antes de voltar para o menu
         return;
     }
@@ -50,73 +51,105 @@ void cadastrar_cliente(void){
     
     client.codigo_cliente = ftell(arq) / sizeof(cliente) + 1; // Pega o número atual de clientes cadastrados e soma + 1
     system("clear"); // Limpa o terminal quando o usuario escolhe a opção Cadastrar Clientes
-    printf("********Novo Cliente********\n");
-	printf("Codigo do cliente: %d\n", client.codigo_cliente); // Mostra o código do cliente que será cadastrado
-	printf("Nome do cliente: ");
+    fprintf(stdout, "********Novo Cliente********\n");
+	fprintf(stdout, "Codigo do cliente: %d\n", client.codigo_cliente); // Mostra o código do cliente que será cadastrado
+	fprintf(stdout, "Nome do cliente: ");
     scanf(" %50[^\n]", client.nome_cliente);
-    printf("Numero de telefone: ");
+    fprintf(stdout, "Numero de telefone: ");
 	scanf(" %14[^\n]", client.telefone);
-	
+    
+    /* TENTATIVA DE VALIDAR TELEFONE
+	if(client.telefone > 15 || client.telefone < 12){
+        fprintf(stderr, "Erro! Telefone invalido!");
+        printf("Numero de telefone: ");
+        scanf(" %14[^\n]", client.telefone);
+    }
+    */
+    
     fwrite(&client, sizeof(cliente), 1, arq);
 	fclose(arq); // Fecha o arquivo clientes.dat
     
     system("clear");
 	puts(CLIENT_SUCESS); // Printa no terminal a mensagem: "Cliente cadastrado com sucesso!"
+    clear_buffer();
     getchar();
-    getchar();
+//     getchar();
+    system("clear");
 }
 
 void listar_clientes(void){
     
-    FILE *arq;
-    cliente client;
-    
     if((arq = fopen(ARQ_CLIENTE, "rb")) == NULL) {
         system("clear"); // Limpa o terminal ao entrar aqui
         puts(NOT_CLIENT);
+        clear_buffer();
         getchar();
-        getchar();
+//         getchar();
         system("clear"); // Limpa o terminal antes de voltar para o menu
         return;
     }
-    
+
     system("clear"); // Limpa o terminal antes de mostrar os clientes cadastrados
-    printf("\t\tClientes Cadastrados\n");
-	printf("*****************************************************************************\n");
-	printf("#Codigo     Nome do Cliente                                    Telefone\n");
-	printf("*****************************************************************************\n");
+    fprintf(stdout, "\t\t\tClientes Cadastrados\n");
+	fprintf(stdout, "*****************************************************************************\n");
+	fprintf(stdout, "#Codigo     Nome do Cliente                                    Telefone\n");
+	fprintf(stdout, "*****************************************************************************\n");
 	while (fread(&client, sizeof(cliente), 1, arq) > 0) {
-		printf("%06d      %-50.50s %-14.14s\n", client.codigo_cliente,
+		fprintf(stdout, "%06d      %-50.50s %-14.14s\n", client.codigo_cliente,
                                                 client.nome_cliente,
                                                 client.telefone);
 	}
-	printf("*****************************************************************************\n");
+	fprintf(stdout, "*****************************************************************************\n");
 	fclose(arq); // Fecha o arquivo clientes.dat
     
+    clear_buffer();
     getchar();
-    getchar();
+//     getchar();
     system("clear"); // Limpa o terminal antes de voltar para o menu
 }
 
 void consultar_cliente(void){
     
-    FILE *arq; // Declarando uma variavel de arquivo
-    cliente client;
-    
-    if((arq = fopen(ARQ_CLIENTE, "rb")) == NULL) {
-        system("clear"); // Limpa o terminal ao entrar aqui
-        puts(NOT_CLIENT);
-        getchar();
-        getchar();
-        system("clear"); // Limpa o terminal antes de voltar para o menu
-        return;
-    }
+    char pesq_nome[51], pesq_nome_lido[51];
     
     system("clear");
     
-    printf("********Consultar Cliente********\n");
-    printf("Digite o nome do cliente: ");
-// Provavelmento o scanf abaixo está errado mais eu vou fazer mesmo assim
-    scanf("%s", client.nome_cliente);
+    fprintf(stdout, "********Consultar Cliente********\n");
+    fprintf(stdout, "Digite o nome do cliente: ");
+/*    
+    for(int i = 0; i < 50; i++){
+        if(pesq_nome[i] == ' '){
+            pesq_nome[i] = '_';
+        }
+    }
+*/    
+    if((arq = fopen(ARQ_CLIENTE, "rb")) == NULL) {
+        system("clear"); // Limpa o terminal ao entrar aqui
+        puts(NOT_CLIENT);
+        clear_buffer();
+        getchar();
+//         getchar();
+        system("clear"); // Limpa o terminal antes de voltar para o menu
+        return;
+    }
+/*    fseek(arq, 0L, SEEK_END);
+    int sz = ftell(arq);
+    fseek(arq, 0L, SEEK_SET);*/
+
+// TENTATIVA DE BUSCAR CLIENTE    
+/*    
+    while(!feof(ARQ_CLIENTE)){
+        fcanf("%s %s\n", pesq_nome, pesq_nome_lido);
+    }    
+*/    
+    
+
+
+    fclose(arq);
+
+    clear_buffer();
+    getchar();
+//     getchar();
+    system("clear"); // Limpa o terminal antes de voltar para o menu
     
 }
