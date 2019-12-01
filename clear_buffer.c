@@ -17,7 +17,8 @@
  * Data da última modificação: 30/11/2019                                         * **********************************************************************************/
 
 #include <stdio.h>
-#include "clear_buffer.h" // Biblioteca com o prototipo da função clear_buffer()
+#include "clear_buffer.h"  /* --> Biblioteca para poder usar 
+                                  a função clear_buffer() */
 
 void clear_buffer(void){
     

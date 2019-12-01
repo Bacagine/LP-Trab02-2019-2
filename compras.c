@@ -18,32 +18,38 @@
 
 #include <stdio.h>
 #include <stdlib.h>         // Biblioteca para poder usar a função system("clear")
-#include "clear_buffer.h"  // Biblioteca para poder usar a função clear_buffer()
-#include "clientes.h" /* --> Biblioteca com os 
-                         prototipos das funções do cliente */
-#include "compras.h" /* --> Biblioteca com os 
-                         prototipos das funções das compras */
+#include <locale.h>        // Biblioteca para poder usar a função setlocale \
+                              usada para colocar acentuação nas palavras
+#include "clear_buffer.h"  /* --> Biblioteca para poder usar 
+                                  a função clear_buffer() */
+#include "clientes.h"     /* --> Biblioteca com os 
+                                 prototipos das funções do cliente */
+#include "compras.h"     /* --> Biblioteca com os 
+                                prototipos das funções das compras */
 
 #define BUY_SUCESS "Compra cadastrada com sucesso!" /* Mensagem a ser 
                                                        mostrada após o 
                                                        cadastro da compra */
 
-#define NOT_BUY "Erro! Não ha nenhuma compra cadastrada!" /* Mensagem a ser 
+#define NOT_BUY "Erro! Não há nenhuma compra cadastrada!" /* Mensagem a ser 
                                                              mostrada caso 
                                                              não haja nenhuma
                                                              compra cadastrada */
 FILE *arq;   // Declarando uma variavel de arquivo
-compra buy; //  Declarando uma estrutura do tipo compra
-data date; //  Declarando uma estrutura do tipo data
+compra buy; // Declarando uma estrutura do tipo compra
+data date; // Declarando uma estrutura do tipo data
+cliente client; //  Declarando uma estrutura do tipo cliente
 
 void cadastrar_compra(void){
-        
+    
+    setlocale(LC_ALL, "Portuguese");
+    
     if((arq = fopen(ARQ_COMPRA, "ab")) == NULL) {
-        system("clear"); // Limpa o terminal ao entrar aqui
+        system("clear");      // Limpa o terminal ao entrar aqui
         fprintf(stderr, "Erro: não foi possível abrir o arquivo compras.dat!\n");
-        clear_buffer();
-        getchar();
-//         getchar();
+        clear_buffer();     // Limpa o buffer
+        getchar();         //
+//         getchar();     //
         system("clear"); // Limpa o terminal antes de voltar para o menu
         return;
     }
@@ -53,7 +59,7 @@ void cadastrar_compra(void){
     system("clear");  // Limpa o terminal quando o usuario escolhe a opção Cadastrar Compras
     fprintf(stdout, "********Nova Compra********\n");
 	fprintf(stdout, "Número da compra: %d\n", buy.numero_compra); // Mostra o Número da compra que será cadastrada
-	fprintf(stdout, "Codigo do cliente: ");   
+	fprintf(stdout, "Código do cliente: ");   
     scanf("%d", &buy.codigo_cliente);
     fprintf(stdout, "Valor da compra: ");
 	scanf("%f", &buy.valor);
@@ -64,7 +70,7 @@ void cadastrar_compra(void){
     printf("Data\n");
     printf("Dia:");
     scanf("%d", &date.dia);
-    printf("Mes: ");
+    printf("Mês: ");
     scanf("%d", &date.mes);
     printf("Ano: ");
     scanf("%d", &date.ano);
@@ -73,9 +79,9 @@ void cadastrar_compra(void){
     fwrite(&buy, sizeof(compra), 1, arq);
 	fclose(arq); // Fecha o arquivo compras.dat
     
-    system("clear"); // Limpa o terminal após o termino do cadastrado da compra
+    system("clear");  // Limpa o terminal após o termino do cadastrado da compra
 	puts(BUY_SUCESS);
-    clear_buffer();
+    clear_buffer(); // Limpa o buffer
     getchar();
 //     getchar();
     system("clear");
@@ -83,10 +89,12 @@ void cadastrar_compra(void){
 
 void listar_compras_data(void){
     
+    setlocale(LC_ALL, "Portuguese");
+    
     if((arq = fopen(ARQ_COMPRA, "rb")) == NULL) {
         system("clear");
         puts(NOT_BUY);
-        clear_buffer();
+        clear_buffer(); // Limpa o buffer
         getchar();
 //         getchar();
         system("clear");
@@ -116,7 +124,7 @@ void listar_compras_data(void){
 
     */
     
-    clear_buffer();
+    clear_buffer();     // Limpa o buffer
     getchar();
 //     getchar();
     system("clear"); // Limpa o terminal antes de voltar para o menu
@@ -131,17 +139,33 @@ bool datas_iguais(data, data){
 
 void listar_compras_cliente(void){
     
-    if((arq = fopen(ARQ_COMPRA, "rb")) == NULL) {
-        system("clear"); // Limpa o terminal ao entrar aqui
+    char nome_cliente[51];
+    
+    setlocale(LC_ALL, "Portuguese");
+    
+    if((arq = fopen(ARQ_COMPRA, "r+b")) == NULL) {
+        system("clear");      // Limpa o terminal ao entrar aqui
         puts(NOT_BUY);
-        clear_buffer();
+        clear_buffer();     // Limpa o buffer
         getchar();
 //         getchar();
         system("clear"); // Limpa o terminal antes de voltar para o menu
         return;
     }
+    /* Tentativa de buscar cliente
+    fprintf(stdout, "Digite o nome do cliente: ");
+    scanf(" %50[^\n]", nome_cliente);
+    fseek(arq, (nome_cliente - 1) * sizeof(cliente), SEEK_SET);
+    fread(&client, sizeof(cliente), 1, arq)
     
+    if(){
+        
+    }
+    else{
+        
+    }
     
+    */
     
     fclose(arq);
     

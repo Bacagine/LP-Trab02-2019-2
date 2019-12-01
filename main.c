@@ -18,64 +18,69 @@
 
 #include <stdio.h>
 #include <stdlib.h>         // Biblioteca usada para o system("clear")
-#include "clear_buffer.h"  // Biblioteca para poder usar a função clear_buffer()
-#include "clientes.h" /* --> Biblioteca com os 
-                         prototipos das funções do cliente */
-#include "compras.h" /* --> Biblioteca com os 
-                         prototipos das funções das compras */
+#include <locale.h>        // Biblioteca para poder usar a função setlocale \
+                              usada para colocar acentuação nas palavras
+#include "clear_buffer.h" /* --> Biblioteca para poder usar 
+                                 a função clear_buffer() */
+#include "clientes.h"   /* --> Biblioteca com os 
+                               prototipos das funções do cliente */
+#include "compras.h"   /* --> Biblioteca com os 
+                              prototipos das funções das compras */
 
-#define ERROR "Erro! Opcao invalida!" /* Mensagem de erro caso 
+#define ERROR "Erro! Opção inválida!" /* Mensagem de erro caso 
                                          o usuario digite uma 
                                          opção inválida */
 
 int main(void){
-	
+
     int op; // Opção a ser escolhida pelo usuário
+    
+    setlocale(LC_ALL, "Portuguese");
     
     system("clear"); // Limpa o terminal ao executar o programa
     do{
-        fprintf(stdout, "*************************MENU*************************\n");
-        fprintf(stdout, "* 1) Cadastrar Cliente                               *\n");
-        fprintf(stdout, "* 2) Listar Clientes                                 *\n");
-        fprintf(stdout, "* 3) Consultar Clientes         (em fase de testes)  *\n");
-        fprintf(stdout, "* 4) Cadastrar Compras          (em fase de testes)  *\n");
-        fprintf(stdout, "* 5) Listar Compras por Data    (em andamento)       *\n");
-        fprintf(stdout, "* 6) Listar Compras por Cliente (em andamento)       *\n");
-        fprintf(stdout, "* 0) Sair                                            *\n");
-        fprintf(stdout, "******************************************************\n");
-        fprintf(stdout, ">> ");
+        printf("*************************MENU*************************\n");
+        printf("* 1) Cadastrar Cliente                               *\n");
+        printf("* 2) Listar Clientes                                 *\n");
+        printf("* 3) Consultar Clientes         (em fase de testes)  *\n");
+        printf("* 4) Cadastrar Compras          (em fase de testes)  *\n");
+        printf("* 5) Listar Compras por Data    (em andamento)       *\n");
+        printf("* 6) Listar Compras por Cliente (em andamento)       *\n");
+        printf("* 0) Sair                                            *\n");
+        printf("******************************************************\n");
+        printf(">> ");
         scanf("%d", &op);
         
         switch(op){
-			case 1:
-                cadastrar_cliente();
+            case 1:
+                cadastrar_cliente();                // Cadastra um cliente
                 break;
             case 2:
-                listar_clientes();
+                listar_clientes();                // Lista os clientes cadastrados
                 break;
              case 3:
-                 consultar_cliente();
+                 consultar_cliente();           // Consulta os clientes cadastrados
                  break;
             case 4:
-                cadastrar_compra();
+                cadastrar_compra();           // Cadastra uma compra
                 break;
             case 5:
-                listar_compras_data();
+                listar_compras_data();      // Lista as compras cadastradas pela data
                 break;
             case 6:
-                listar_compras_cliente();
+                listar_compras_cliente(); // Lista as compras cadastradas por cliente
                 break;
             case 0:
                 break;
             default:
-                system("clear"); // Limpa o terminal ao entrar aqui
-                puts(ERROR);    // Mostra uma mensagem de erro para o usuário
-                clear_buffer();
-                getchar();     // Semelhante ao system("pause"); do Windows
+                system("clear");     // Limpa o terminal ao entrar aqui
+                puts(ERROR);        // Mostra uma mensagem de erro para o usuário
+                clear_buffer();    // Limpa o buffer
+                getchar();        // Semelhante ao system("pause"); do Windows
                 system("clear"); // Limpa o terminal antes de voltar para o menu
-		}
-		
-	} while(op != 0);
-	
-	return 0;
+        }
+
+    } while(op != 0);
+    
+    return 0;
 }
