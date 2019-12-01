@@ -7,7 +7,7 @@
 
 lojinha_do_berg: main.o compras.o clientes.o clear_buffer.o
 	gcc -o lojinha_do_berg main.o compras.o clientes.o clear_buffer.o
-main.o: main.c compras.h clientes.h
+main.o: main.c compras.h clientes.h clear_buffer.h
 	gcc -c main.c
 compras.o: compras.c compras.h clear_buffer.h
 	gcc -c compras.c
