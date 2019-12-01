@@ -29,6 +29,7 @@ install:
 	cp -r lojinha_do_berg icons /opt/Lojinha_do_Berg
 	cp lojinha_do_berg.desktop /usr/share/applications
 	chmod +x /usr/share/applications/lojinha_do_berg.desktop
+#	desktop-file-install /usr/share/applications/lojinha_do_berg.desktop
 unistall:
 	rm -rf /opt/Lojinha_do_Berg
 	rm -rf /usr/share/applications/lojinha_do_berg.desktop

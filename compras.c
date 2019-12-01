@@ -17,15 +17,14 @@
  * Data da última modificação: 30/11/2019                                         * **********************************************************************************/
 
 #include <stdio.h>
-#include <stdlib.h>         // Biblioteca para poder usar a função system("clear")
-#include <locale.h>        // Biblioteca para poder usar a função setlocale \
-                              usada para colocar acentuação nas palavras
+#include <stdlib.h>          // Biblioteca para poder usar a função system("clear")
+#include <locale.h>         // Biblioteca para poder usar a função setlocale
 #include "clear_buffer.h"  /* --> Biblioteca para poder usar 
                                   a função clear_buffer() */
-#include "clientes.h"     /* --> Biblioteca com os 
-                                 prototipos das funções do cliente */
-#include "compras.h"     /* --> Biblioteca com os 
-                                prototipos das funções das compras */
+#include "clientes.h"    /* --> Biblioteca com os 
+                                prototipos das funções do cliente */
+#include "compras.h"   /* --> Biblioteca com os 
+                              prototipos das funções das compras */
 
 #define BUY_SUCESS "Compra cadastrada com sucesso!" /* Mensagem a ser 
                                                        mostrada após o 
@@ -42,7 +41,7 @@ cliente client; //  Declarando uma estrutura do tipo cliente
 
 void cadastrar_compra(void){
     
-    setlocale(LC_ALL, "Portuguese");
+    setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
     
     if((arq = fopen(ARQ_COMPRA, "ab")) == NULL) {
         system("clear");      // Limpa o terminal ao entrar aqui
@@ -89,7 +88,7 @@ void cadastrar_compra(void){
 
 void listar_compras_data(void){
     
-    setlocale(LC_ALL, "Portuguese");
+    setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
     
     if((arq = fopen(ARQ_COMPRA, "rb")) == NULL) {
         system("clear");
@@ -141,7 +140,7 @@ void listar_compras_cliente(void){
     
     char nome_cliente[51];
     
-    setlocale(LC_ALL, "Portuguese");
+    setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
     
     if((arq = fopen(ARQ_COMPRA, "r+b")) == NULL) {
         system("clear");      // Limpa o terminal ao entrar aqui

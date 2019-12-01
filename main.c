@@ -17,15 +17,14 @@
  **********************************************************************************/
 
 #include <stdio.h>
-#include <stdlib.h>         // Biblioteca usada para o system("clear")
-#include <locale.h>        // Biblioteca para poder usar a função setlocale \
-                              usada para colocar acentuação nas palavras
-#include "clear_buffer.h" /* --> Biblioteca para poder usar 
-                                 a função clear_buffer() */
-#include "clientes.h"   /* --> Biblioteca com os 
-                               prototipos das funções do cliente */
+#include <stdlib.h>          // Biblioteca usada para o system("clear")
+#include <locale.h>         // Biblioteca para poder usar a função setlocale
+#include "clear_buffer.h"  /* --> Biblioteca para poder usar 
+                                  a função clear_buffer() */
+#include "clientes.h"    /* --> Biblioteca com os 
+                                prototipos das funções do cliente */
 #include "compras.h"   /* --> Biblioteca com os 
-                              prototipos das funções das compras */
+                             prototipos das funções das compras */
 
 #define ERROR "Erro! Opção inválida!" /* Mensagem de erro caso 
                                          o usuario digite uma 
@@ -35,7 +34,7 @@ int main(void){
 
     int op; // Opção a ser escolhida pelo usuário
     
-    setlocale(LC_ALL, "Portuguese");
+    setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
     
     system("clear"); // Limpa o terminal ao executar o programa
     do{

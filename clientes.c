@@ -18,15 +18,14 @@
  ***********************************************************************************/
 
 #include <stdio.h>
-#include <stdlib.h>         // Biblioteca para poder usar a função system("clear")
-#include <locale.h>        // Biblioteca para poder usar a função setlocale \
-                              usada para colocar acentuação nas palavras
-#include "clear_buffer.h"  /* --> Biblioteca para poder usar 
-                                  a função clear_buffer() */
-#include "clientes.h"     /* --> Biblioteca com os 
-                                 prototipos das funções do cliente */
-#include "compras.h"    /* --> Biblioteca com os 
-                               prototipos das funções das compras */
+#include <stdlib.h>            // Biblioteca para poder usar a função system("clear")
+#include <locale.h>           // Biblioteca para poder usar a função setlocale
+#include "clear_buffer.h"    /* --> Biblioteca para poder usar 
+                                    a função clear_buffer() */
+#include "clientes.h"      /* --> Biblioteca com os 
+                                  prototipos das funções do cliente */
+#include "compras.h"     /* --> Biblioteca com os 
+                                prototipos das funções das compras */
 
 #define CLIENT_SUCESS "Cliente cadastrado com sucesso!" /* Mensagem a ser 
                                                            mostrada após o 
@@ -41,7 +40,7 @@ cliente client; //  Declarando uma estrutura do tipo cliente
 
 void cadastrar_cliente(void){
     
-    setlocale(LC_ALL, "Portuguese");
+    setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
     
     if((arq = fopen(ARQ_CLIENTE, "ab")) == NULL) {
         system("clear"); // Limpa o terminal ao entrar aqui
@@ -84,7 +83,7 @@ void cadastrar_cliente(void){
 
 void listar_clientes(void){
     
-    setlocale(LC_ALL, "Portuguese");
+    setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
     
     if((arq = fopen(ARQ_CLIENTE, "rb")) == NULL) {
         system("clear"); // Limpa o terminal ao entrar aqui
@@ -117,7 +116,7 @@ void listar_clientes(void){
 
 void consultar_cliente(void){
     
-    setlocale(LC_ALL, "Portuguese");
+    setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
     
     char pesq_nome[51], pesq_nome_lido[51];
     
