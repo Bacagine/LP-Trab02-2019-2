@@ -19,6 +19,8 @@ Gustavo Bacagine <gustavo.bacagine@protonmail.com>
 
 Lucas Pereira de Matos <lucas.pereira.matos.000@gmail.com>
 
+Caio Elias Emerick Regino <caioregino.147@gmail.com>
+
 ## **Escopo**
 ![git-hub large](Escopo1.png)
 ![git-hub large](Escopo2.png)
