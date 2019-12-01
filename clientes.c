@@ -10,11 +10,11 @@
  * Versão: 0.1                                                                     *
  *                                                                                 *
  * Desenvolvidores: Gustavo S. Bacagine       <gustavobacagine@gmail.com>          *
- * 		  			Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com>  *
+ *                  Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com>  *
  *                  Caio Elias Emerick Regino <caioregino.147@gmail.com>           *
  *                                                                                 *
  * Data de inicio: 21/11/2019                                                      *
- * Data da última modificação: 30/11/2019                                          *
+ * Data da última modificação: 01/12/2019                                          *
  ***********************************************************************************/
 
 #include <stdio.h>
@@ -43,15 +43,14 @@ void cadastrar_cliente(void){
     setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
     
     if((arq = fopen(ARQ_CLIENTE, "ab")) == NULL) {
-        system("clear"); // Limpa o terminal ao entrar aqui
+        system("clear");     // Limpa o terminal ao entrar aqui
         fprintf(stderr, "Erro: não foi possível abrir o arquivo clientes.dat!\n");
-        clear_buffer(); // Limpa o buffer
-        getchar();
-//         getchar();
+        clear_buffer();    // Limpa o buffer
+        getchar();        // Limpa o terminal antes de voltar para o menu
         system("clear"); // Limpa o terminal antes de voltar para o menu
         return;
     }
-    fseek(arq, 0, SEEK_END);  // desloca o indicador de posição para o final do arquivo
+    fseek(arq, 0, SEEK_END); // desloca o indicador de posição para o final do arquivo
     
     client.codigo_cliente = ftell(arq) / sizeof(cliente) + 1; // Pega o número atual de clientes cadastrados e soma + 1
     system("clear"); // Limpa o terminal quando o usuario escolhe a opção Cadastrar Clientes
@@ -71,14 +70,14 @@ void cadastrar_cliente(void){
     */
     
     fwrite(&client, sizeof(cliente), 1, arq);
-	fclose(arq); // Fecha o arquivo clientes.dat
+	fclose(arq);            // Fecha o arquivo clientes.dat
     
-    system("clear");
-	puts(CLIENT_SUCESS); // Printa no terminal a mensagem: "Cliente cadastrado com sucesso!"
-    clear_buffer(); // Limpa o buffer
-    getchar();
-//     getchar();
-    system("clear");
+    system("clear");      // Limpa o terminal ao termino do cadastro do cliente
+	puts(CLIENT_SUCESS); // Mostra a mensagem que foi definida em CLIENT_SUCESS
+    clear_buffer();     // Limpa o buffer
+    getchar();         /* Pausa a mensagem que está definida em
+                        * CLIENT_SUCESS no terminal */
+    system("clear"); // Limpa o terminal antes de voltar para o menu
 }
 
 void listar_clientes(void){
@@ -86,15 +85,16 @@ void listar_clientes(void){
     setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
     
     if((arq = fopen(ARQ_CLIENTE, "rb")) == NULL) {
-        system("clear"); // Limpa o terminal ao entrar aqui
-        puts(NOT_CLIENT);
-        clear_buffer(); // Limpa o buffer
-        getchar();
-//         getchar();
+        system("clear");      // Limpa o terminal ao entrar aqui
+        puts(NOT_CLIENT);    // Mostra a mensagem que foi definida em NOT_CLIENT
+        clear_buffer();     // Limpa o buffer
+        getchar();         /* Pausa a mensagem que está definida em
+                            * NOT_CLIENT no terminal */
         system("clear"); // Limpa o terminal antes de voltar para o menu
         return;
     }
 
+    /* CONTEUDO COM OS CLIENTES CADASTRADOS */
     system("clear"); // Limpa o terminal antes de mostrar os clientes cadastrados
     fprintf(stdout, "\t\t\tClientes Cadastrados\n");
 	fprintf(stdout, "*****************************************************************************\n");
@@ -106,12 +106,13 @@ void listar_clientes(void){
                                                 client.telefone);
 	}
 	fprintf(stdout, "*****************************************************************************\n");
-	fclose(arq); // Fecha o arquivo clientes.dat
+	fclose(arq);         // Fecha o arquivo clientes.dat
     
-    clear_buffer(); // Limpa o buffer
-    getchar();
-//     getchar();
-    system("clear"); // Limpa o terminal antes de voltar para o menu
+    clear_buffer();       // Limpa o buffer
+    getchar();           /* Pausa o arquivo de cadastros 
+                          * no terminal para que o usuario
+                          * possa ver as compras cadastradas */
+    system("clear");  // Limpa o terminal antes de voltar para o menu
 }
 
 void consultar_cliente(void){
@@ -136,15 +137,16 @@ void consultar_cliente(void){
     }
 */    
     if((arq = fopen(ARQ_CLIENTE, "rb")) == NULL) {
-        system("clear"); // Limpa o terminal ao entrar aqui
-        puts(NOT_CLIENT);
-        clear_buffer(); // Limpa o buffer
-        getchar();
-//         getchar();
+        system("clear");      // Limpa o terminal ao entrar aqui
+        puts(NOT_CLIENT);    // Mostra a mensagem que foi definida em NOT_CLIENT
+        clear_buffer();     // Limpa o buffer
+        getchar();         /* Pausa a mensagem que está definida em
+                            * NOT_CLIENT no terminal */
         system("clear"); // Limpa o terminal antes de voltar para o menu
         return;
     }
-/*    fseek(arq, 0L, SEEK_END);
+    
+/*  fseek(arq, 0L, SEEK_END);
     int sz = ftell(arq);
     fseek(arq, 0L, SEEK_SET);*/
 
@@ -157,9 +159,10 @@ void consultar_cliente(void){
 
     fclose(arq);
 
-    clear_buffer(); // Limpa o buffer
-    getchar();
-//     getchar();
-    system("clear"); // Limpa o terminal antes de voltar para o menu
+    clear_buffer();       // Limpa o buffer
+    getchar();           /* Pausa o arquivo de cadastros 
+                          * no terminal para que o usuario
+                          * possa ver as compras cadastradas */
+    system("clear");  // Limpa o terminal antes de voltar para o menu
     
 }

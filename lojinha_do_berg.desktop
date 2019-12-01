@@ -6,4 +6,4 @@ Comment=aplicathaivo que controla as vendas da lojinha de departamentos do Berg
 Exec=/opt/Lojinha_do_Berg/lojinha_do_berg
 Icon=/opt/Lojinha_do_Berg/icons/lojinha_do_berg_128.png
 Terminal=true
-Categories=
+Categories=Utility;

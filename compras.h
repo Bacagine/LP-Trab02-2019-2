@@ -10,17 +10,17 @@
 
 /* Estrutura que representa uma data */
 typedef struct {
-	int dia;
-	int mes;
-	int ano;
+    int dia;
+    int mes;
+    int ano;
 } data;
 
 /* Estrutura que representa uma compra */
 typedef struct {
-	int numero_compra;
-	int codigo_cliente; // código do cliente que realizou a compra
-	float valor;
-	data dt_compra;
+    int numero_compra;
+    int codigo_cliente; // código do cliente que realizou a compra
+    float valor;
+    data dt_compra;
 } compra;
 
 /* função que cadastra uma nova compra no arquivo */

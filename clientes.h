@@ -8,9 +8,9 @@
 
 /* Estrutura que representa um cliente */
 typedef struct {
-	int codigo_cliente;
-	char nome_cliente[51];
-	char telefone[15];
+    int codigo_cliente;
+    char nome_cliente[51];
+    char telefone[15];
 } cliente;
 
 /* função que cadastra um novo cliente no arquivo */

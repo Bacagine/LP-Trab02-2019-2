@@ -10,11 +10,11 @@
  * Versão: 0.1                                                                    *
  *                                                                                *
  * Desenvolvidores: Gustavo S. Bacagine       <gustavobacagine@gmail.com>         *
- * 		  			Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com> *
+ *                  Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com> *
  *                  Caio Elias Emerick Regino <caioregino.147@gmail.com>          *
  *                                                                                *
  * Data de inicio: 30/11/2019                                                     *
- * Data da última modificação: 30/11/2019                                         * **********************************************************************************/
+ * Data da última modificação: 01/12/2019                                         * **********************************************************************************/
 
 #include <stdio.h>
 #include "clear_buffer.h"  /* --> Biblioteca para poder usar 

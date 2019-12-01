@@ -10,11 +10,11 @@
  * Versão: 0.1                                                                    *
  *                                                                                *
  * Desenvolvidores: Gustavo S. Bacagine       <gustavobacagine@gmail.com>         *
- * 		  			Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com> *
+ *                  Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com> *
  *                  Caio Elias Emerick Regino <caioregino.147@gmail.com>          *
  *                                                                                *
  * Data de inicio: 21/11/2019                                                     *
- * Data da última modificação: 30/11/2019                                         * **********************************************************************************/
+ * Data da última modificação: 01/12/2019                                         * **********************************************************************************/
 
 #include <stdio.h>
 #include <stdlib.h>          // Biblioteca para poder usar a função system("clear")
@@ -34,9 +34,9 @@
                                                              mostrada caso 
                                                              não haja nenhuma
                                                              compra cadastrada */
-FILE *arq;   // Declarando uma variavel de arquivo
-compra buy; // Declarando uma estrutura do tipo compra
-data date; // Declarando uma estrutura do tipo data
+FILE *arq;         // Declarando uma variavel de arquivo
+compra buy;       // Declarando uma estrutura do tipo compra
+data date;       // Declarando uma estrutura do tipo data
 cliente client; //  Declarando uma estrutura do tipo cliente
 
 void cadastrar_compra(void){
@@ -46,13 +46,12 @@ void cadastrar_compra(void){
     if((arq = fopen(ARQ_COMPRA, "ab")) == NULL) {
         system("clear");      // Limpa o terminal ao entrar aqui
         fprintf(stderr, "Erro: não foi possível abrir o arquivo compras.dat!\n");
-        clear_buffer();     // Limpa o buffer
-        getchar();         //
-//         getchar();     //
+        clear_buffer();    // Limpa o buffer
+        getchar();        // Pausa a mensagem de erro no terminal
         system("clear"); // Limpa o terminal antes de voltar para o menu
         return;
     }
-    fseek(arq, 0, SEEK_END);
+    fseek(arq, 0, SEEK_END); // desloca o indicador de posição para o final do arquivo
     
     buy.numero_compra = ftell(arq) / sizeof(compra) + 1; // Pega o número atual de compras cadastradas e soma + 1
     system("clear");  // Limpa o terminal quando o usuario escolhe a opção Cadastrar Compras
@@ -65,7 +64,7 @@ void cadastrar_compra(void){
     fprintf(stdout, "Data: ");
     scanf("%d", &buy.dt_compra);
     
-    /*
+    /* PROVAVELMENTE ISTO NÃO SERÁ MAIS NECESSÁRIO
     printf("Data\n");
     printf("Dia:");
     scanf("%d", &date.dia);
@@ -78,12 +77,12 @@ void cadastrar_compra(void){
     fwrite(&buy, sizeof(compra), 1, arq);
 	fclose(arq); // Fecha o arquivo compras.dat
     
-    system("clear");  // Limpa o terminal após o termino do cadastrado da compra
-	puts(BUY_SUCESS);
-    clear_buffer(); // Limpa o buffer
-    getchar();
-//     getchar();
-    system("clear");
+    system("clear");      // Limpa o terminal após o termino do cadastrado da compra
+	puts(BUY_SUCESS);    // Mostra a mensagem que foi definida em BUY_SUCESS
+    clear_buffer();     // Limpa o buffer
+    getchar();         /* Pausa a mensagem que está definida em
+                        * BUY_SUCESS no terminal */
+    system("clear"); // Limpa o terminal antes de voltar para o menu
 }
 
 void listar_compras_data(void){
@@ -91,12 +90,12 @@ void listar_compras_data(void){
     setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
     
     if((arq = fopen(ARQ_COMPRA, "rb")) == NULL) {
-        system("clear");
-        puts(NOT_BUY);
-        clear_buffer(); // Limpa o buffer
-        getchar();
-//         getchar();
-        system("clear");
+        system("clear");      // Limpa o terminal ao entrar aqui
+        puts(NOT_BUY);       // Mostra a mensagem que foi definida em NOT_BUY
+        clear_buffer();     // Limpa o buffer
+        getchar();         /* Pausa a mensagem que está definida em
+                            * NOT_BUY no terminal */
+        system("clear"); // Limpa o terminal antes de voltar para o menu
         return;
     }
     
@@ -106,6 +105,8 @@ void listar_compras_data(void){
     datas_iguais(); // Preciso usar essa função para \
                        encontrar as datas dentro do arquivo
     */
+    
+    /* CONTEUDO COM OS CLIENTES CADASTRADOS */
     /* ISSO ESTÁ ERRADO
     system("clear");
     printf("\t\tCompras Cadastrados\n");
@@ -123,10 +124,11 @@ void listar_compras_data(void){
 
     */
     
-    clear_buffer();     // Limpa o buffer
-    getchar();
-//     getchar();
-    system("clear"); // Limpa o terminal antes de voltar para o menu
+    clear_buffer();       // Limpa o buffer
+    getchar();           /* Pausa o arquivo de cadastros 
+                          * no terminal para que o usuario
+                          * possa ver as compras cadastradas */
+    system("clear");  // Limpa o terminal antes de voltar para o menu
 
 }
 
@@ -144,10 +146,10 @@ void listar_compras_cliente(void){
     
     if((arq = fopen(ARQ_COMPRA, "r+b")) == NULL) {
         system("clear");      // Limpa o terminal ao entrar aqui
-        puts(NOT_BUY);
+        puts(NOT_BUY);       // Mostra a mensagem que foi definida em NOT_BUY
         clear_buffer();     // Limpa o buffer
-        getchar();
-//         getchar();
+        getchar();         /* Pausa a mensagem que está definida em
+                            * NOT_BUY no terminal */
         system("clear"); // Limpa o terminal antes de voltar para o menu
         return;
     }
@@ -167,5 +169,11 @@ void listar_compras_cliente(void){
     */
     
     fclose(arq);
+    
+    clear_buffer();       // Limpa o buffer
+    getchar();           /* Pausa o arquivo de cadastros 
+                          * no terminal para que o usuario
+                          * possa ver as compras cadastradas */
+    system("clear");  // Limpa o terminal antes de voltar para o menu
     
 }
