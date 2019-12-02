@@ -4,6 +4,8 @@ Git Hub: https://github.com/Bacagine/LP-Trab02-2019-2 -->
 
 # **Lojinha do Berg**
 
+![git-hub large](Lojinha_do_Berg.png)
+
 Aplicação criada como 2º Trabalho do 2º Semestre do curso de 
 Análise e Desenvol-
 

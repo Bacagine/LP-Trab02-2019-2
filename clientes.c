@@ -9,23 +9,24 @@
  *                                                                                 *
  * Versão: 0.1                                                                     *
  *                                                                                 *
- * Desenvolvidores: Gustavo S. Bacagine       <gustavobacagine@gmail.com>          *
+ * Desenvolvidores: Gustavo Bacagine          <gustavobacagine@gmail.com>          *
  *                  Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com>  *
  *                  Caio Elias Emerick Regino <caioregino.147@gmail.com>           *
  *                                                                                 *
  * Data de inicio: 21/11/2019                                                      *
- * Data da última modificação: 01/12/2019                                          *
+ * Data da última modificação: 02/12/2019                                          *
  ***********************************************************************************/
 
 #include <stdio.h>
 #include <stdlib.h>            // Biblioteca para poder usar a função system("clear")
-#include <locale.h>           // Biblioteca para poder usar a função setlocale
-#include "clear_buffer.h"    /* --> Biblioteca para poder usar 
-                                    a função clear_buffer() */
-#include "clientes.h"      /* --> Biblioteca com os 
-                                  prototipos das funções do cliente */
-#include "compras.h"     /* --> Biblioteca com os 
-                                prototipos das funções das compras */
+#include <locale.h>           // Biblioteca para poder usar a função setlocale()
+#include <string.h>          // Biblioteca para poder usar a função strstr()
+#include "clear_buffer.h"   /* --> Biblioteca para poder usar 
+                                   a função clear_buffer() */
+#include "clientes.h"     /* --> Biblioteca com os 
+                                 prototipos das funções do cliente */
+#include "compras.h"    /* --> Biblioteca com os 
+                               prototipos das funções das compras */
 
 #define CLIENT_SUCESS "Cliente cadastrado com sucesso!" /* Mensagem a ser 
                                                            mostrada após o 
@@ -46,11 +47,11 @@ void cadastrar_cliente(void){
         system("clear");     // Limpa o terminal ao entrar aqui
         fprintf(stderr, "Erro: não foi possível abrir o arquivo clientes.dat!\n");
         clear_buffer();    // Limpa o buffer
-        getchar();        // Limpa o terminal antes de voltar para o menu
+        getchar();        // Pausa a mensagem de erro no terminal
         system("clear"); // Limpa o terminal antes de voltar para o menu
         return;
     }
-    fseek(arq, 0, SEEK_END); // desloca o indicador de posição para o final do arquivo
+    fseek(arq, 0, SEEK_END); // Desloca o indicador de posição para o final do arquivo
     
     client.codigo_cliente = ftell(arq) / sizeof(cliente) + 1; // Pega o número atual de clientes cadastrados e soma + 1
     system("clear"); // Limpa o terminal quando o usuario escolhe a opção Cadastrar Clientes
@@ -98,15 +99,15 @@ void listar_clientes(void){
     system("clear"); // Limpa o terminal antes de mostrar os clientes cadastrados
     fprintf(stdout, "\t\t\tClientes Cadastrados\n");
 	fprintf(stdout, "*****************************************************************************\n");
-	fprintf(stdout, "#Código     Nome do Cliente                                    Telefone\n");
+	fprintf(stdout, "#Código     Nome do Cliente                                     Telefone\n");
 	fprintf(stdout, "*****************************************************************************\n");
 	while (fread(&client, sizeof(cliente), 1, arq) > 0) {
-		fprintf(stdout, "%06d      %-50.50s %-14.14s\n", client.codigo_cliente,
-                                                client.nome_cliente,
-                                                client.telefone);
+		fprintf(stdout, "%06d      %-50.50s %+14.14s\n", client.codigo_cliente,
+                                                         client.nome_cliente,
+                                                         client.telefone);
 	}
 	fprintf(stdout, "*****************************************************************************\n");
-	fclose(arq);         // Fecha o arquivo clientes.dat
+	fclose(arq);            // Fecha o arquivo clientes.dat
     
     clear_buffer();       // Limpa o buffer
     getchar();           /* Pausa o arquivo de cadastros 
@@ -115,27 +116,19 @@ void listar_clientes(void){
     system("clear");  // Limpa o terminal antes de voltar para o menu
 }
 
-void consultar_cliente(void){
+void consultar_cliente(void){ // ARRUMAR ESSA FUNÇÃO
     
     setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
+                        /* Não sei se isso é
+                         * realmente necessário */
+    char nome_cliente[51], linha[121];
     
-    char pesq_nome[51], pesq_nome_lido[51];
-    
-    system("clear");
+    system("clear"); // Limpa o terminal ao entrar aqui
     
     fprintf(stdout, "********Consultar Cliente********\n");
     fprintf(stdout, "Digite o nome do cliente: ");
-    /* Provavaelmente esse scanf deve estar errado,
-     * mas eu vou deixar ele assim mesmo por enquanto */
-    scanf("%s", client.nome_cliente);
+    scanf(" %50[^\n]", nome_cliente);
     
-/*    
-    for(int i = 0; i < 50; i++){
-        if(pesq_nome[i] == ' '){
-            pesq_nome[i] = '_';
-        }
-    }
-*/    
     if((arq = fopen(ARQ_CLIENTE, "rb")) == NULL) {
         system("clear");      // Limpa o terminal ao entrar aqui
         puts(NOT_CLIENT);    // Mostra a mensagem que foi definida em NOT_CLIENT
@@ -146,19 +139,25 @@ void consultar_cliente(void){
         return;
     }
     
-/*  fseek(arq, 0L, SEEK_END);
-    int sz = ftell(arq);
-    fseek(arq, 0L, SEEK_SET);*/
-
-// TENTATIVA DE BUSCAR CLIENTE    
-/*    
-    while(!feof(ARQ_CLIENTE)){
-        fcanf("%s %s\n", pesq_nome, pesq_nome_lido);
-    }    
-*/    
-
-    fclose(arq);
-
+ /* PROVAVELMENTE ISSO ESTÁ MUITO ERRADO MAIS EU NÃO SEI O QUE FAZER
+  * VOU DEIXAR ASSIM POR ENQUANTO */
+    // Busca o nome digitado no arquivo clientes.dat
+    while (fread(&client, sizeof(cliente), 1, arq) > 0) {
+        while (fscanf(arq, " %120[^\n]", linha) > 0) { 
+//         while (fgets(linha, 121, arq) != NULL) {
+            if (strstr(linha, nome_cliente) != NULL) {
+//                 fputs(linha, stdout);
+                printf("%s\n", linha);
+            }
+            else{
+                fprintf(stdout, "ERRO! Não há nenhum cliente cadastrado com esse nome");
+            }
+        }
+        
+	}
+	
+    fclose(arq);            // Fecha o arquivo clientes.dat
+    
     clear_buffer();       // Limpa o buffer
     getchar();           /* Pausa o arquivo de cadastros 
                           * no terminal para que o usuario
