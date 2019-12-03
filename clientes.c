@@ -42,6 +42,7 @@ cliente client; //  Declarando uma estrutura do tipo cliente
 void cadastrar_cliente(void){
     
     setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
+    int i;
     
     if((arq = fopen(ARQ_CLIENTE, "ab")) == NULL) {
         system("clear");     // Limpa o terminal ao entrar aqui
@@ -53,7 +54,10 @@ void cadastrar_cliente(void){
     }
     fseek(arq, 0, SEEK_END); // Desloca o indicador de posição para o final do arquivo
     
-    client.codigo_cliente = ftell(arq) / sizeof(cliente) + 1; // Pega o número atual de clientes cadastrados e soma + 1
+    client.codigo_cliente = ftell(arq) / sizeof(cliente) + 1; /* Pega o número atual de 
+                                                               * clientes cadastradas em bytes
+                                                               * divide pelo tamanho da estrutura 
+                                                               * clientes em bytes e soma + 1 */
     system("clear"); // Limpa o terminal quando o usuario escolhe a opção Cadastrar Clientes
     fprintf(stdout, "********Novo Cliente********\n");
 	fprintf(stdout, "Codigo do cliente: %d\n", client.codigo_cliente); // Mostra o código do cliente que será cadastrado
@@ -62,11 +66,13 @@ void cadastrar_cliente(void){
     fprintf(stdout, "Número de telefone: ");
 	scanf(" %14[^\n]", client.telefone);
     
-    /* TENTATIVA DE VALIDAR TELEFONE
-	if(client.telefone > 15 || client.telefone < 12){
-        fprintf(stderr, "Erro! Telefone invalido!");
+    /* VALIDAR O TELEFONE
+    for(i = 0;client.telefone[i] != '\0'; i++);
+    while (i > 14 || i < 12){
+        fprintf(stderr, "Erro! Telefone invalido!\n");
         printf("Numero de telefone: ");
         scanf(" %14[^\n]", client.telefone);
+        for(i = 0;client.telefone[i] != '\0'; i++);
     }
     */
     
@@ -142,10 +148,11 @@ void consultar_cliente(void){ // ARRUMAR ESSA FUNÇÃO
  /* PROVAVELMENTE ISSO ESTÁ MUITO ERRADO MAIS EU NÃO SEI O QUE FAZER
   * VOU DEIXAR ASSIM POR ENQUANTO */
     // Busca o nome digitado no arquivo clientes.dat
-    while (fread(&client, sizeof(cliente), 1, arq) > 0) {
-        while (fscanf(arq, " %120[^\n]", linha) > 0) { 
-//         while (fgets(linha, 121, arq) != NULL) {
-            if (strstr(linha, nome_cliente) != NULL) {
+    while (fread(&client, sizeof(cliente), 1, arq) > 0){
+        while (fscanf(arq, " %120[^\n]", linha) > 0){ 
+//         while (fgets(linha, 121, arq) != NULL){
+//             if (strstr(linha, nome_cliente) != NULL){
+            if (strstr(linha, nome_cliente) != NULL){
 //                 fputs(linha, stdout);
                 printf("%s\n", linha);
             }

@@ -8,12 +8,12 @@
  *                                                                                *
  * Versão: 0.1                                                                    *
  *                                                                                *
- * Desenvolvidores: Gustavo S. Bacagine       <gustavobacagine@gmail.com>         *
+ * Desenvolvidores: Gustavo Bacagine          <gustavobacagine@gmail.com>         *
  *                  Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com> *
  *                  Caio Elias Emerick Regino <caioregino.147@gmail.com>          *
  *                                                                                *
  * Data de inicio: 21/11/2019                                                     *
- * Data da última modificação: 01/12/2019                                         *
+ * Data da última modificação: 02/12/2019                                         *
  **********************************************************************************/
 
 #include <stdio.h>
@@ -49,7 +49,7 @@ int main(void){
         printf("* 5) Listar Compras por Data    (em andamento)       *\n");
         printf("* 6) Listar Compras por Cliente (em andamento)       *\n");
         printf("* 7) Desenvolvedores                                 *\n");
-        printf("* 0) Sair                                            *\n");
+        printf("* 8) Sair                                            *\n");
         printf("******************************************************\n");
         printf(">> ");
         scanf("%d", &op);
@@ -76,19 +76,22 @@ int main(void){
             case 7:
                 developers();
                 break;
-            case 0:
+            case 8:
+                system("clear");
+                puts("Saindo...");
+                printf("\n\n");
                 break;
             default:
                 //system("cls");       // Limpa o prompt do Windows ao eentrar aqui
                 system("clear");      // Limpa o terminal ao entrar aqui
                 puts(ERROR);         // Mostra uma mensagem de erro para o usuário
-                clear_buffer();     // Limpa o buffer
-                getchar();         // Semelhante ao system("pause"); do Windows
+                getchar();          // Semelhante ao system("pause"); do Windows
+                clear_buffer();    // Limpa o buffer
                 //system("cls");  // Limpa o prompt do Windows antes de voltar para o menu
                 system("clear"); // Limpa o terminal antes de voltar para o menu
         }
 
-    } while(op != 0);         // Sai do programa quando o usuario digitar 0
+    } while(op != 8);         // Sai do programa quando o usuario digitar 0
     
     return 0;
 }

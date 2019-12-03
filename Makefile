@@ -1,6 +1,8 @@
 # Makefile criado por Gustavo Bacagine <gustavobacagine@protonmail.com>
+#
 # Data de criação: 21/11/2019
-# Data da ultima modificação: 30/11/2019 
+# Data da última modificação: 02/12/2019 
+#
 # Lojinha_do_Berg é um aplicativo que controla as vendas da lojinha de \
   departamentos do Berg
 # Git Hub: https://github.com/Bacagine/LP-Trab02-2019-2

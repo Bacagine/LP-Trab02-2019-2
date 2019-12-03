@@ -55,7 +55,10 @@ void cadastrar_compra(void){
     }
     fseek(arq, 0, SEEK_END); // Desloca o indicador de posição para o final do arquivo
     
-    buy.numero_compra = ftell(arq) / sizeof(compra) + 1; // Pega o número atual de compras cadastradas e soma + 1
+    buy.numero_compra = ftell(arq) / sizeof(compra) + 1; /* Pega o número atual de 
+                                                          * compras cadastradas em bytes
+                                                          * divide pelo tamanho da estrutura 
+                                                          * compra em bytes e soma + 1 */
 //     system("cls");  // Limpa o terminal quando o usuario escolhe a opção Cadastrar Compras no Windows
     system("clear");  // Limpa o terminal quando o usuario escolhe a opção Cadastrar Compras
     fprintf(stdout, "********Nova Compra********\n");
@@ -63,7 +66,7 @@ void cadastrar_compra(void){
 	fprintf(stdout, "Código do cliente: ");
     scanf("%d", &buy.codigo_cliente);
     
-    if((arq = fopen(ARQ_COMPRA, "rb")) == NULL) {
+    if((arq = fopen(ARQ_CLIENTE, "rb")) == NULL) {
 //         system("cls");      // Limpa o terminal ao entrar aqui no Windows
         system("clear");      // Limpa o terminal ao entrar aqui
         fprintf(stderr, "Erro: não foi possível abrir o arquivo compras.dat!\n");
@@ -74,14 +77,20 @@ void cadastrar_compra(void){
         return;
     }
     
-    while (fread(&client, sizeof(cliente), 1, arq) > 0) {
+//    while (fread(&client, sizeof(cliente), 1, arq) > 0) {
         if(buy.codigo_cliente == client.codigo_cliente){
-            /* NÃO SEI O QUE FAZER AQUI */
+//            continue;
         }
-	}
+        else{
+            fprintf(stdout, "Não existe nenhum cliente com esse código\n");
+            //fclose(clientes.dat);
+            fclose(arq);
+//            break;
+        }
+//	}
     
     fprintf(stdout, "Valor da compra: ");
-	scanf("%f", &buy.valor);
+    scanf("%f", &buy.valor);
     printf("Data\n");
     printf("Dia:");
     scanf("%d", &buy.dt_compra.dia);
@@ -122,12 +131,14 @@ void listar_compras_data(void){ // ARRUMAR ESSA FUNÇÃO
 //  system("cls");
     system("clear");
     fprintf(stdout, "********Consultar Compra por Data********\n");
-    fprintf(stdout, "Digite a data da compra: ");
-    scanf("%d", &buy.dt_compra);
-    /*
-    datas_iguais(); // Preciso usar essa função para \
-                       encontrar as datas dentro do arquivo
-    */
+    fprintf(stdout, "Digite a data:");
+    fprintf(stdout, " Dia: ");
+    scanf("%d", &date.dia);
+    fprintf(stdout, "Mês: ");
+    scanf("%d", &date.mes);
+    fprintf(stdout, "Ano: ");
+    scanf("%d", &date.ano);
+    //datas_iguais(date, dtcompra);
     
     clear_buffer();       // Limpa o buffer
     getchar();           /* Pausa o arquivo de cadastros 
@@ -138,11 +149,19 @@ void listar_compras_data(void){ // ARRUMAR ESSA FUNÇÃO
 
 }
 
-/*
-bool datas_iguais(data, data){ // DESENVOLVER ESSA FUNÇÃO
-    // NÃO COMO FAZER ISSO AQUI
+
+bool datas_iguais(data date, data dt_compra){ // DESENVOLVER ESSA FUNÇÃO
+    
+    bool TorF = true;
+    
+    if(date.dia == dt_compra.dia && date.mes == dt_compra.mes && date.ano == dt_compra.ano){
+        return TorF;
+    }
+    else{
+        return TorF = false;
+    }
+    
 }
-*/
 
 void listar_compras_cliente(void){ // ARRUMAR ESSA FUNÇÃO
     
