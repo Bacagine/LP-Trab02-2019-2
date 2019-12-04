@@ -53,7 +53,6 @@ void menu(void){
         printf("* 6) Listar Compras por Cliente (em andamento)       *\n");
         printf("* 7) Desenvolvedores                                 *\n");
         printf("* 8) Sair                                            *\n");
-        printf("* 9) listar_compras             (FUNÇÃO DE TESTES)   *\n");
         printf("******************************************************\n");
         printf(">> ");
         scanf("%d", &op);
@@ -84,9 +83,6 @@ void menu(void){
                 system("clear");
                 puts("Saindo...");
                 printf("\n\n");
-                break;
-            case 9:
-                listar_compras(); // FUNÇÃO DE TESTES
                 break;
             default:
                 //system("cls");       // Limpa o prompt do Windows ao eentrar aqui

@@ -43,7 +43,6 @@ void cadastrar_cliente(void){
     
     FILE *arq;       // Declarando uma variavel de arquivo
     cliente client; //  Declarando uma estrutura do tipo cliente
-//     int i;
     
     if((arq = fopen(ARQ_CLIENTE, "ab")) == NULL) {
         system("clear");     // Limpa o terminal ao entrar aqui
@@ -66,16 +65,6 @@ void cadastrar_cliente(void){
     scanf(" %50[^\n]", client.nome_cliente);
     fprintf(stdout, "Número de telefone: ");
 	scanf(" %14[^\n]", client.telefone);
-    
-    /* VALIDAR O TELEFONE
-    for(i = 0;client.telefone[i] != '\0'; i++);
-    while (i > 14 || i < 12){
-        fprintf(stderr, "Erro! Telefone invalido!\n");
-        printf("Numero de telefone: ");
-        scanf(" %14[^\n]", client.telefone);
-        for(i = 0;client.telefone[i] != '\0'; i++);
-    }
-    */
     
     fwrite(&client, sizeof(cliente), 1, arq);
 	fclose(arq);            // Fecha o arquivo clientes.dat
@@ -132,10 +121,9 @@ void consultar_cliente(void){ // ARRUMAR ESSA FUNÇÃO
     
     FILE *arq;       // Declarando uma variavel de arquivo
     cliente client; //  Declarando uma estrutura do tipo cliente
-    int count = 0, i;
-                        /* Não sei se isso é
-                         * realmente necessário */
-    char nome_cliente[51], linha[121];
+    int count;
+    
+    char nome_cliente[51];
     
     system("clear"); // Limpa o terminal ao entrar aqui
     
@@ -153,42 +141,36 @@ void consultar_cliente(void){ // ARRUMAR ESSA FUNÇÃO
         return;
     }
     
-    
-    
- /* PROVAVELMENTE ISSO ESTÁ MUITO ERRADO MAIS EU NÃO SEI O QUE FAZER
-  * VOU DEIXAR ASSIM POR ENQUANTO */
+    system("clear"); // Limpa o terminal
+    fprintf(stdout, "*****************************************************************************\n");
+    fprintf(stdout, "#Código     Nome do Cliente                                     Telefone\n");
+    fprintf(stdout, "*****************************************************************************\n");
     // Busca o nome digitado no arquivo clientes.dat
+    count = 0;
     while(fread(&client, sizeof(cliente), 1, arq) > 0){
-//         printf("%s\n", nome_cliente);
-//         printf("%s\n", client.nome_cliente);/*
-//         printf("entrei\n");
-        
-        if(strstr(nome_cliente, client.nome_cliente) != NULL){
-                /*printf("Entrei\n");
-                printf("%s\n", client.nome_cliente);
-                fprintf(stdout, "*****************************************************************************\n");
-                fprintf(stdout, "#Código     Nome do Cliente                                     Telefone\n");
-                fprintf(stdout, "*****************************************************************************\n");*/
-            for(i = 0; nome_cliente[i] == ' '; i++){    
+        if(strstr(client.nome_cliente, nome_cliente) != NULL){ //Compara o nome digitado com os que existem no arquivo
+            //for(i = 0; nome_cliente[i] == ' '; i++){    
                 fprintf(stdout, "%06d      %-50.50s %+14.14s\n", client.codigo_cliente,
                                                                  client.nome_cliente,
                                                                  client.telefone);
-//             fprintf(stdout, "*****************************************************************************\n");
                 count++;
-            }
+            //}
         }
     }
-
+    fprintf(stdout, "*****************************************************************************\n");
+    
+    // MENSAGEM DE ERRO CASO NÃO TENHA UM CLIENTE COM O NOME DIGITADO
     if(count == 0){
-             fprintf(stdout, "ERRO! Não há nenhum cliente cadastrado com esse nome\n");
+        system("clear");       // Limpa o terminal ao entrar aqui
+        fprintf(stdout, "ERRO! Não há nenhum cliente cadastrado com esse nome\n");
     }
-
+    
     fclose(arq);           // Fecha o arquivo clientes.dat
     
-    getchar();            /* Pausa o arquivo de cadastros 
-                           * no terminal para que o usuario
-                           * possa ver as compras cadastradas */
-    clear_buffer();    // Limpa o buffer
-    system("clear");  // Limpa o terminal antes de voltar para o menu
+    getchar();           /* Pausa o arquivo de cadastros 
+                          * no terminal para que o usuario
+                          * possa ver as compras cadastradas */
+    clear_buffer();   // Limpa o buffer 
+    system("clear"); // Limpa o terminal antes de voltar para o menu
     
 }
