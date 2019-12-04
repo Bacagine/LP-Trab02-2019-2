@@ -44,8 +44,8 @@ void developers(void){
     fprintf(stdout, " *                                                               *\n");
     fprintf(stdout, " *****************************************************************/\n");
     
-    clear_buffer();     // Limpa o buffer
     getchar();         /* Pausa a mensagem que está definida em
                         * BUY_SUCESS no terminal */
+    clear_buffer();     // Limpa o buffer
     system("clear"); // Limpa o terminal antes de voltar para o menu
 }

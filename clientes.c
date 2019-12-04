@@ -36,19 +36,20 @@
                                                                 mostrada caso 
                                                                 não haja nenhum
                                                                 cliente cadastrado */
-FILE *arq;       // Declarando uma variavel de arquivo
-cliente client; //  Declarando uma estrutura do tipo cliente
 
 void cadastrar_cliente(void){
     
     setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
+    
+    FILE *arq;       // Declarando uma variavel de arquivo
+    cliente client; //  Declarando uma estrutura do tipo cliente
     int i;
     
     if((arq = fopen(ARQ_CLIENTE, "ab")) == NULL) {
         system("clear");     // Limpa o terminal ao entrar aqui
         fprintf(stderr, "Erro: não foi possível abrir o arquivo clientes.dat!\n");
-        clear_buffer();    // Limpa o buffer
-        getchar();        // Pausa a mensagem de erro no terminal
+        getchar();         // Pausa a mensagem de erro no terminal
+        clear_buffer();   // Limpa o buffer
         system("clear"); // Limpa o terminal antes de voltar para o menu
         return;
     }
@@ -81,9 +82,9 @@ void cadastrar_cliente(void){
     
     system("clear");      // Limpa o terminal ao termino do cadastro do cliente
 	puts(CLIENT_SUCESS); // Mostra a mensagem que foi definida em CLIENT_SUCESS
-    clear_buffer();     // Limpa o buffer
-    getchar();         /* Pausa a mensagem que está definida em
-                        * CLIENT_SUCESS no terminal */
+    getchar();          /* Pausa a mensagem que está definida em
+                         * CLIENT_SUCESS no terminal */
+    clear_buffer();   // Limpa o buffer
     system("clear"); // Limpa o terminal antes de voltar para o menu
 }
 
@@ -91,12 +92,15 @@ void listar_clientes(void){
     
     setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
     
+    FILE *arq;       // Declarando uma variavel de arquivo
+    cliente client; //  Declarando uma estrutura do tipo cliente
+    
     if((arq = fopen(ARQ_CLIENTE, "rb")) == NULL) {
         system("clear");      // Limpa o terminal ao entrar aqui
         puts(NOT_CLIENT);    // Mostra a mensagem que foi definida em NOT_CLIENT
-        clear_buffer();     // Limpa o buffer
-        getchar();         /* Pausa a mensagem que está definida em
-                            * NOT_CLIENT no terminal */
+        getchar();          /* Pausa a mensagem que está definida em
+                             * NOT_CLIENT no terminal */
+        clear_buffer();   // Limpa o buffer
         system("clear"); // Limpa o terminal antes de voltar para o menu
         return;
     }
@@ -115,16 +119,20 @@ void listar_clientes(void){
 	fprintf(stdout, "*****************************************************************************\n");
 	fclose(arq);            // Fecha o arquivo clientes.dat
     
-    clear_buffer();       // Limpa o buffer
-    getchar();           /* Pausa o arquivo de cadastros 
-                          * no terminal para que o usuario
-                          * possa ver as compras cadastradas */
+    getchar();            /* Pausa o arquivo de cadastros 
+                           * no terminal para que o usuario
+                           * possa ver as compras cadastradas */
+    clear_buffer();    // Limpa o buffer
     system("clear");  // Limpa o terminal antes de voltar para o menu
 }
 
 void consultar_cliente(void){ // ARRUMAR ESSA FUNÇÃO
     
     setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
+    
+    FILE *arq;       // Declarando uma variavel de arquivo
+    cliente client; //  Declarando uma estrutura do tipo cliente
+    
                         /* Não sei se isso é
                          * realmente necessário */
     char nome_cliente[51], linha[121];
@@ -138,9 +146,9 @@ void consultar_cliente(void){ // ARRUMAR ESSA FUNÇÃO
     if((arq = fopen(ARQ_CLIENTE, "rb")) == NULL) {
         system("clear");      // Limpa o terminal ao entrar aqui
         puts(NOT_CLIENT);    // Mostra a mensagem que foi definida em NOT_CLIENT
-        clear_buffer();     // Limpa o buffer
-        getchar();         /* Pausa a mensagem que está definida em
-                            * NOT_CLIENT no terminal */
+        getchar();          /* Pausa a mensagem que está definida em
+                             * NOT_CLIENT no terminal */
+        clear_buffer();   // Limpa o buffer
         system("clear"); // Limpa o terminal antes de voltar para o menu
         return;
     }
@@ -163,12 +171,12 @@ void consultar_cliente(void){ // ARRUMAR ESSA FUNÇÃO
         
 	}
 	
-    fclose(arq);            // Fecha o arquivo clientes.dat
+    fclose(arq);           // Fecha o arquivo clientes.dat
     
-    clear_buffer();       // Limpa o buffer
-    getchar();           /* Pausa o arquivo de cadastros 
-                          * no terminal para que o usuario
-                          * possa ver as compras cadastradas */
+    getchar();            /* Pausa o arquivo de cadastros 
+                           * no terminal para que o usuario
+                           * possa ver as compras cadastradas */
+    clear_buffer();    // Limpa o buffer
     system("clear");  // Limpa o terminal antes de voltar para o menu
     
 }
