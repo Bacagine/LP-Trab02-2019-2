@@ -4,7 +4,7 @@
  * Lojinha_do_Berg é um aplicativo que controla as vendas da lojinha de           *
  * departamentos do Berg                                                          *
  *                                                                                *
- * main.c: arquivo com o menu da aplicação Lojinha_do_Berg                        *
+ * menu.c: arquivo com o menu da aplicação Lojinha_do_Berg                        *
  *                                                                                *
  * Versão: 0.1                                                                    *
  *                                                                                *
@@ -17,9 +17,9 @@
  **********************************************************************************/
 
 #include <stdio.h>
-#include <stdlib.h>          // Biblioteca para poder usar a função system("clear")
-#include <locale.h>         // Biblioteca para poder usar a função setlocale
-#include "menu.h"
+#include <stdlib.h>           // Biblioteca para poder usar a função system("clear")
+#include <locale.h>          // Biblioteca para poder usar a função setlocale
+#include "menu.h"           // Biblioteca para poder usar a função menu
 #include "clear_buffer.h"  /* --> Biblioteca para poder usar 
                                   a função clear_buffer() */
 #include "developers.h"  /* --> Biblioteca para poder usar a função
@@ -32,8 +32,10 @@
 #define ERROR "Erro! Opção inválida!" /* Mensagem de erro caso 
                                          o usuario digite uma 
                                          opção inválida */
-                            
-void menu(){
+
+void listar_compras(void); // FUNÇÃO DE TESTES                        
+
+void menu(void){
     
     setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
     
@@ -96,5 +98,5 @@ void menu(){
                 system("clear"); // Limpa o terminal antes de voltar para o menu
         }
 
-    } while(op != 8);         // Sai do programa quando o usuario digitar 0
+    } while(op != 8);         // Sai do programa quando o usuario digitar 8
 }

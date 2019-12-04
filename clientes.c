@@ -43,7 +43,7 @@ void cadastrar_cliente(void){
     
     FILE *arq;       // Declarando uma variavel de arquivo
     cliente client; //  Declarando uma estrutura do tipo cliente
-    int i;
+//     int i;
     
     if((arq = fopen(ARQ_CLIENTE, "ab")) == NULL) {
         system("clear");     // Limpa o terminal ao entrar aqui
@@ -132,7 +132,7 @@ void consultar_cliente(void){ // ARRUMAR ESSA FUNÇÃO
     
     FILE *arq;       // Declarando uma variavel de arquivo
     cliente client; //  Declarando uma estrutura do tipo cliente
-    
+    int count = 0, i;
                         /* Não sei se isso é
                          * realmente necessário */
     char nome_cliente[51], linha[121];
@@ -153,24 +153,36 @@ void consultar_cliente(void){ // ARRUMAR ESSA FUNÇÃO
         return;
     }
     
+    
+    
  /* PROVAVELMENTE ISSO ESTÁ MUITO ERRADO MAIS EU NÃO SEI O QUE FAZER
   * VOU DEIXAR ASSIM POR ENQUANTO */
     // Busca o nome digitado no arquivo clientes.dat
-    while (fread(&client, sizeof(cliente), 1, arq) > 0){
-        while (fscanf(arq, " %120[^\n]", linha) > 0){ 
-//         while (fgets(linha, 121, arq) != NULL){
-//             if (strstr(linha, nome_cliente) != NULL){
-            if (strstr(linha, nome_cliente) != NULL){
-//                 fputs(linha, stdout);
-                printf("%s\n", linha);
-            }
-            else{
-                fprintf(stdout, "ERRO! Não há nenhum cliente cadastrado com esse nome");
+    while(fread(&client, sizeof(cliente), 1, arq) > 0){
+//         printf("%s\n", nome_cliente);
+//         printf("%s\n", client.nome_cliente);/*
+//         printf("entrei\n");
+        
+        if(strstr(nome_cliente, client.nome_cliente) != NULL){
+                /*printf("Entrei\n");
+                printf("%s\n", client.nome_cliente);
+                fprintf(stdout, "*****************************************************************************\n");
+                fprintf(stdout, "#Código     Nome do Cliente                                     Telefone\n");
+                fprintf(stdout, "*****************************************************************************\n");*/
+            for(i = 0; nome_cliente[i] == ' '; i++){    
+                fprintf(stdout, "%06d      %-50.50s %+14.14s\n", client.codigo_cliente,
+                                                                 client.nome_cliente,
+                                                                 client.telefone);
+//             fprintf(stdout, "*****************************************************************************\n");
+                count++;
             }
         }
-        
-	}
-	
+    }
+
+    if(count == 0){
+             fprintf(stdout, "ERRO! Não há nenhum cliente cadastrado com esse nome\n");
+    }
+
     fclose(arq);           // Fecha o arquivo clientes.dat
     
     getchar();            /* Pausa o arquivo de cadastros 

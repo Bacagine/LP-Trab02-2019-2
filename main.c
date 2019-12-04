@@ -13,12 +13,10 @@
  *                  Caio Elias Emerick Regino <caioregino.147@gmail.com>          *
  *                                                                                *
  * Data de inicio: 21/11/2019                                                     *
- * Data da última modificação: 02/12/2019                                         *
+ * Data da última modificação: 03/12/2019                                         *
  **********************************************************************************/
 
 #include <stdio.h>
-#include <stdlib.h>          // Biblioteca para poder usar a função system("clear")
-#include <locale.h>         // Biblioteca para poder usar a função setlocale
 #include "menu.h"
 
 int main(void){
