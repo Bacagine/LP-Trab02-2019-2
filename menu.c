@@ -12,8 +12,8 @@
  *                  Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com> *
  *                  Caio Elias Emerick Regino <caioregino.147@gmail.com>          *
  *                                                                                *
- * Data de inicio: 21/11/2019                                                     *
- * Data da última modificação: 02/12/2019                                         *
+ * Data de inicio: 03/12/2019                                                     *
+ * Data da última modificação: 03/12/2019                                         *
  **********************************************************************************/
 
 #include <stdio.h>
