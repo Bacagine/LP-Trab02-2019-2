@@ -50,7 +50,7 @@ void menu(void){
         printf("* 3) Consultar Clientes         (em fase de testes)  *\n");
         printf("* 4) Cadastrar Compras          (em fase de testes)  *\n");
         printf("* 5) Listar Compras por Data    (em andamento)       *\n");
-        printf("* 6) Listar Compras por Cliente (em andamento)       *\n");
+        printf("* 6) Listar Compras por Cliente                      *\n");
         printf("* 7) Desenvolvedores                                 *\n");
         printf("* 8) Sair                                            *\n");
         printf("******************************************************\n");

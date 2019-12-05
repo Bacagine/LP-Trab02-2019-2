@@ -45,12 +45,13 @@ void cadastrar_compra(void){
     
     setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
     
-    FILE *arq_buy, *arq_cliente;         // Declarando uma variavel de arquivo
+    FILE *arq_cliente, *arq_compra;         // Declarando uma variavel de arquivo
     cliente client; //  Declarando uma estrutura do tipo cliente
     compra buy;       // Declarando uma estrutura do tipo compra
     data date;       // Declarando uma estrutura do tipo data
+    int count;
     
-    if((arq_buy = fopen(ARQ_COMPRA, "ab")) == NULL) {
+    if((arq_compra = fopen(ARQ_COMPRA, "ab")) == NULL) {
         //system("cls");       // Limpa o terminal ao entrar aqui no Windows
         system("clear");      // Limpa o terminal ao entrar aqui
         fprintf(stderr, "Erro: não foi possível abrir o arquivo compras.dat!\n");
@@ -60,9 +61,9 @@ void cadastrar_compra(void){
         system("clear"); // Limpa o terminal antes de voltar para o menu
         return;
     }
-    fseek(arq_buy, 0, SEEK_END); // Desloca o indicador de posição para o final do arquivo
+    fseek(arq_compra, 0, SEEK_END); // Desloca o indicador de posição para o final do arquivo
     
-    buy.numero_compra = ftell(arq_buy) / sizeof(compra) + 1; /* Pega o número atual de 
+    buy.numero_compra = ftell(arq_compra) / sizeof(compra) + 1; /* Pega o número atual de 
                                                           * compras cadastradas em bytes
                                                           * divide pelo tamanho da estrutura 
                                                           * compra em bytes e soma + 1 */
@@ -73,7 +74,7 @@ void cadastrar_compra(void){
 	fprintf(stdout, "Código do cliente: ");
     scanf("%d", &buy.codigo_cliente);
     
-/*    if((arq_cliente = fopen(ARQ_CLIENTE, "rb")) == NULL) {
+    if((arq_cliente = fopen(ARQ_CLIENTE, "rb")) == NULL) {
 //         system("cls");      // Limpa o terminal ao entrar aqui no Windows
         system("clear");      // Limpa o terminal ao entrar aqui
         fprintf(stderr, "Erro: não nenhum cliente cadastrado!\n");
@@ -82,43 +83,68 @@ void cadastrar_compra(void){
 //         system("cls"); // Limpa o terminal antes de voltar para o menu
         system("clear"); // Limpa o terminal antes de voltar para o menu
         return;
-    }*/
+    }
     
-/*    // NÃO SEI COMO ARRUMAR ISSO
+    // NÃO SEI COMO ARRUMAR ISSO
     while (fread(&client, sizeof(cliente), 1, arq_cliente) > 0){
-        if(buy.codigo_cliente == client.codigo_cliente);
-        else{
+        if(client.codigo_cliente == buy.codigo_cliente){
+            fprintf(stdout, "Valor da compra: ");
+            scanf("%f", &buy.valor);
+            printf("Data\n");
+            printf("Dia: ");
+            scanf("%d", &buy.dt_compra.dia);
+            printf("Mês: ");
+            scanf("%d", &buy.dt_compra.mes);
+            printf("Ano: ");
+            scanf("%d", &buy.dt_compra.ano);
+            
+            fwrite(&buy, sizeof(compra), 1, arq_compra);
+            fclose(arq_compra);             // Fecha o arquivo compras.dat
+            //  system("cls");         // Limpa o prompt após o termino do cadastrado da compra no Windows
+            system("clear");      // Limpa o terminal após o termino do cadastrado da compra
+            puts(BUY_SUCESS);    // Mostra a mensagem que foi definida em BUY_SUCESS
+            getchar();         /* Pausa a mensagem que está definida em
+                                * BUY_SUCESS no terminal */
+            clear_buffer();     // Limpa o buffer
+        //  system("cls");  // Limpa o terminal antes de voltar para o menu
+            system("clear"); // Limpa o terminal antes de voltar para o menu
+//             menu();
+        }
+    }
+    if(client.codigo_cliente != buy.codigo_cliente){
             system("clear");
             fprintf(stdout, "Não existe nenhum cliente com esse código\n");
             fclose(arq_cliente);
             getchar();
             clear_buffer();
-//             menu(); // DEU RUIM AQUI
-        }
-        
-    } */
+//             menu();
+           system("clear");
+    }
     
-    fprintf(stdout, "Valor da compra: ");
-    scanf("%f", &buy.valor);
-    printf("Data\n");
-    printf("Dia: ");
-    scanf("%d", &buy.dt_compra.dia);
-    printf("Mês: ");
-    scanf("%d", &buy.dt_compra.mes);
-    printf("Ano: ");
-    scanf("%d", &buy.dt_compra.ano);
-    
-    fwrite(&buy, sizeof(compra), 1, arq_buy);
-	fclose(arq_buy);             // Fecha o arquivo compras.dat
-    
-//  system("cls");         // Limpa o prompt após o termino do cadastrado da compra no Windows
-    system("clear");      // Limpa o terminal após o termino do cadastrado da compra
-	puts(BUY_SUCESS);    // Mostra a mensagem que foi definida em BUY_SUCESS
-    getchar();         /* Pausa a mensagem que está definida em
-                        * BUY_SUCESS no terminal */
-    clear_buffer();     // Limpa o buffer
-//  system("cls");  // Limpa o terminal antes de voltar para o menu
-    system("clear"); // Limpa o terminal antes de voltar para o menu
+//     fclose(arq_cliente);
+/*
+            fprintf(stdout, "Valor da compra: ");
+            scanf("%f", &buy.valor);
+            printf("Data\n");
+            printf("Dia: ");
+            scanf("%d", &buy.dt_compra.dia);
+            printf("Mês: ");
+            scanf("%d", &buy.dt_compra.mes);
+            printf("Ano: ");
+            scanf("%d", &buy.dt_compra.ano);
+            
+            fwrite(&buy, sizeof(compra), 1, arq);
+            fclose(arq);             // Fecha o arquivo compras.dat
+            
+        //  system("cls");         // Limpa o prompt após o termino do cadastrado da compra no Windows
+            system("clear");      // Limpa o terminal após o termino do cadastrado da compra
+            puts(BUY_SUCESS);    // Mostra a mensagem que foi definida em BUY_SUCESS
+            getchar();         /* Pausa a mensagem que está definida em
+                                * BUY_SUCESS no terminal 
+            clear_buffer();     // Limpa o buffer
+        //  system("cls");  // Limpa o terminal antes de voltar para o menu
+            system("clear"); // Limpa o terminal antes de voltar para o menu
+    */
 }
 
 //
@@ -205,8 +231,6 @@ void listar_compras_cliente(void){ // ARRUMAR ESSA FUNÇÃO
     
     FILE *arq;         // Declarando uma variavel de arquivo
     compra buy;       // Declarando uma estrutura do tipo compra
-    data date;       // Declarando uma estrutura do tipo data
-    cliente client; //  Declarando uma estrutura do tipo cliente
     
     int cod_cliente;
     int count;
@@ -227,21 +251,21 @@ void listar_compras_cliente(void){ // ARRUMAR ESSA FUNÇÃO
     }
     
     system("clear");
-	fprintf(stdout, "*****************************************************************************\n");
+	fprintf(stdout, "*******************************************************************************\n");
 	fprintf(stdout, "#Número da compra     Código do Cliente           Valor              Data\n");
-	fprintf(stdout, "*****************************************************************************\n");
+	fprintf(stdout, "*******************************************************************************\n");
     // Lê o arquivo e busca pelo nome digitado
     count = 0;
     while(fread(&buy, sizeof(compra), 1, arq) > 0){
         if((buy.codigo_cliente == cod_cliente) != 0){
             fprintf(stdout, "%06d                %06d                      %.2f\
-            %02d%02d%02d\n", buy.numero_compra, buy.codigo_cliente, buy.valor,
-            buy.dt_compra.dia,buy.dt_compra.mes, buy.dt_compra.ano);
+             %02d/%02d/%02d\n", buy.numero_compra, buy.codigo_cliente, buy.valor,
+                                buy.dt_compra.dia,buy.dt_compra.mes, buy.dt_compra.ano);
             
             count++;
         }
     }
-    fprintf(stdout, "*****************************************************************************\n");
+    fprintf(stdout, "*******************************************************************************\n");
     
     if(count == 0){
         system("clear");

@@ -1,4 +1,4 @@
-# Makefile criado por Gustavo Bacagine <gustavobacagine@protonmail.com>
+# Makefile criado por Gustavo Bacagine <gustavo.bacagine@protonmail.com>
 #
 # Data de criação: 21/11/2019
 # Data da última modificação: 02/12/2019 

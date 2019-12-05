@@ -30,22 +30,22 @@ void developers(void){
 
     system("clear");
     
-    fprintf(stdout, "/*************************DESENVOLVEDORES*************************\n");    
-    fprintf(stdout, " *                                                               *\n");
-    fprintf(stdout, " * FATEC        -          CARAPICUÍBA            -         2019 *\n");
-    fprintf(stdout, " *---------------------------------------------------------------*\n");
-    fprintf(stdout, " *                                                               *\n");
-    fprintf(stdout, " * Gustavo Bacagine          <gustavo.bacagine@protonmail.com>   *\n");
-    fprintf(stdout, " * Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com> *\n");
-    fprintf(stdout, " * Caio Elias Emerick Regino <caioregino.147@gmail.com>          *\n");
-    fprintf(stdout, " *                                                               *\n");
-    fprintf(stdout, " * Programa desenvolvimo como 2º Trabalho de ADSM para a materia *\n");
-    fprintf(stdout, " * de Línguagem de Programação (Profº Ciro Cirne Trindade)       *\n");
-    fprintf(stdout, " *                                                               *\n");
-    fprintf(stdout, " *****************************************************************/\n");
+    fprintf(stdout, "*************************DESENVOLVEDORES*************************\n");    
+    fprintf(stdout, "*                                                               *\n");
+    fprintf(stdout, "* FATEC        -          CARAPICUÍBA            -         2019 *\n");
+    fprintf(stdout, "*---------------------------------------------------------------*\n");
+    fprintf(stdout, "*                                                               *\n");
+    fprintf(stdout, "* Gustavo Bacagine          <gustavo.bacagine@protonmail.com>   *\n");
+    fprintf(stdout, "* Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com> *\n");
+    fprintf(stdout, "* Caio Elias Emerick Regino <caioregino.147@gmail.com>          *\n");
+    fprintf(stdout, "*                                                               *\n");
+    fprintf(stdout, "* Programa desenvolvimo como 2º Trabalho de ADSM para a materia *\n");
+    fprintf(stdout, "* de Línguagem de Programação (Profº Ciro Cirne Trindade)       *\n");
+    fprintf(stdout, "*                                                               *\n");
+    fprintf(stdout, "*****************************************************************\n");
     
     getchar();         /* Pausa a mensagem que está definida em
                         * BUY_SUCESS no terminal */
-    clear_buffer();     // Limpa o buffer
+    clear_buffer();   // Limpa o buffer
     system("clear"); // Limpa o terminal antes de voltar para o menu
 }
