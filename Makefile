@@ -5,18 +5,17 @@
 #
 # Lojinha_do_Berg é um aplicativo que controla as vendas da lojinha de \
   departamentos do Berg
+#
 # Git Hub: https://github.com/Bacagine/LP-Trab02-2019-2
 
-lojinha_do_berg: main.o compras.o clientes.o menu.o clear_buffer.o developers.o
-	gcc -o lojinha_do_berg main.o compras.o clientes.o menu.o clear_buffer.o developers.o
+lojinha_do_berg: main.o compras.o clientes.o clear_buffer.o developers.o
+	gcc -o lojinha_do_berg main.o compras.o clientes.o clear_buffer.o developers.o
 main.o: main.c compras.h clientes.h clear_buffer.h
 	gcc -c main.c
 compras.o: compras.c compras.h clear_buffer.h
 	gcc -c compras.c
 clientes.o: clientes.c clientes.h clear_buffer.h
 	gcc -c clientes.c
-menu.o: menu.c menu.h
-	gcc -c menu.c
 clear_buffer.o: clear_buffer.c clear_buffer.h
 	gcc -c clear_buffer.c
 developers.o: developers.c developers.h

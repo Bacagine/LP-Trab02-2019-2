@@ -1,4 +1,6 @@
-/* developers.h: Biblioteca com o prototipo da função developers
+/* Git Hub: https://github.com/Bacagine/LP-Trab02-2019-2
+ * 
+ * developers.h: Biblioteca com o prototipo da função developers
  * 
  * Biblioteca criada por Gustavo Bacagine <gustavo.bacagine@protonmail.com>
  * 

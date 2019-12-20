@@ -6,7 +6,7 @@
  *                                                                                *
  * developers.c: arquivo contendo o nome e email do desenvolvedores da aplicação  *
  *                                                                                *
- * Versão: 0.1                                                                    *
+ * Versão: 1.0                                                                    *
  *                                                                                *
  * Desenvolvidores: Gustavo Bacagine          <gustavobacagine@gmail.com>         *
  *                  Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com> *

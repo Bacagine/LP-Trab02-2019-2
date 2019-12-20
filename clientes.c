@@ -7,7 +7,7 @@
  * clientes.c: arquivo com o desenvolvimento dos prototipos das funções da biblio- *
  * teca clientes.h                                                                 *
  *                                                                                 *
- * Versão: 0.1                                                                     *
+ * Versão: 1.0                                                                     *
  *                                                                                 *
  * Desenvolvidores: Gustavo Bacagine          <gustavobacagine@gmail.com>          *
  *                  Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com>  *

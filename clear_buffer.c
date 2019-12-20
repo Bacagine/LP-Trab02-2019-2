@@ -7,7 +7,10 @@
  * clear_buffer.c: arquivo com o desenvolvimento do prototipo da função           *
  * clear_buffer da biblioteca buffer.h                                            *
  *                                                                                *
- * Versão: 0.1                                                                    *
+ * OBS: Essa função não foi desenvolvida por nós. Percebi que muitos              *
+ * programadores se utilizam dessa função e passamos a usa-lá em nosso programa   *
+ *                                                                                *
+ * Versão: 1.0                                                                    *
  *                                                                                *
  * Desenvolvidores: Gustavo Bacagine          <gustavobacagine@gmail.com>         *
  *                  Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com> *

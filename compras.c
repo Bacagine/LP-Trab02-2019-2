@@ -7,7 +7,7 @@
  * compras.c: arquivo com o desenvolvimento dos prototipos das funções da biblio- *
  * teca compras.h                                                                 *
  *                                                                                *
- * Versão: 0.1                                                                    *
+ * Versão: 1.0                                                                    *
  *                                                                                *
  * Desenvolvidores: Gustavo Bacagine          <gustavobacagine@gmail.com>         *
  *                  Lucas Pereira de Matos    <lucas.pereira.matos.000@gmail.com> *
@@ -88,15 +88,24 @@ void cadastrar_compra(void){
     // NÃO SEI COMO ARRUMAR ISSO
     while (fread(&client, sizeof(cliente), 1, arq_cliente) > 0){
         if(client.codigo_cliente == buy.codigo_cliente){
-            fprintf(stdout, "Valor da compra: ");
-            scanf("%f", &buy.valor);
-            printf("Data\n");
+            printf("\n%s\n\n", client.nome_cliente);
+            printf("Data da compra\n");
+            printf("--------------\n");
             printf("Dia: ");
             scanf("%d", &buy.dt_compra.dia);
             printf("Mês: ");
             scanf("%d", &buy.dt_compra.mes);
             printf("Ano: ");
             scanf("%d", &buy.dt_compra.ano);
+            printf("Valor da compra: R$ ");
+            scanf("%f", &buy.valor);
+            
+            while(buy.valor <= 0){
+                fprintf(stderr, "Valor inválido!\n");
+                fprintf(stderr, "Por favor, digite um número maior que 0:\n");
+                printf("\nValor da compra: R$ ");
+                scanf("%f", &buy.valor); 
+            }
             
             fwrite(&buy, sizeof(compra), 1, arq_compra);
             fclose(arq_compra);             // Fecha o arquivo compras.dat
@@ -113,38 +122,17 @@ void cadastrar_compra(void){
     }
     if(client.codigo_cliente != buy.codigo_cliente){
             system("clear");
-            fprintf(stdout, "Não existe nenhum cliente com esse código\n");
-            fclose(arq_cliente);
+            printf("Não existe nenhum cliente com esse código\n");
+            printf("Compra interrompida!\n");
+//             fclose(arq_cliente);
             getchar();
             clear_buffer();
 //             menu();
            system("clear");
     }
     
-//     fclose(arq_cliente);
-/*
-            fprintf(stdout, "Valor da compra: ");
-            scanf("%f", &buy.valor);
-            printf("Data\n");
-            printf("Dia: ");
-            scanf("%d", &buy.dt_compra.dia);
-            printf("Mês: ");
-            scanf("%d", &buy.dt_compra.mes);
-            printf("Ano: ");
-            scanf("%d", &buy.dt_compra.ano);
-            
-            fwrite(&buy, sizeof(compra), 1, arq);
-            fclose(arq);             // Fecha o arquivo compras.dat
-            
-        //  system("cls");         // Limpa o prompt após o termino do cadastrado da compra no Windows
-            system("clear");      // Limpa o terminal após o termino do cadastrado da compra
-            puts(BUY_SUCESS);    // Mostra a mensagem que foi definida em BUY_SUCESS
-            getchar();         /* Pausa a mensagem que está definida em
-                                * BUY_SUCESS no terminal 
-            clear_buffer();     // Limpa o buffer
-        //  system("cls");  // Limpa o terminal antes de voltar para o menu
-            system("clear"); // Limpa o terminal antes de voltar para o menu
-    */
+    fclose(arq_cliente);
+    
 }
 
 //
