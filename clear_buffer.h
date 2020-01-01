@@ -18,7 +18,7 @@
  * desenvolvida por mim. Percebi 
  * que muitos programadores 
  * se utilizam dessa função e 
- * passei a usa-lá em meus programas */
+ * passamos a usa-lá em nossos programas */
 void clear_buffer(void);
 
 #endif

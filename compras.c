@@ -19,7 +19,6 @@
 #include <stdio.h>
 #include <stdlib.h>          // Biblioteca para poder usar a função system("clear")
 #include <locale.h>         // Biblioteca para poder usar a função setlocale
-#include "menu.h"
 #include "clear_buffer.h"  /* --> Biblioteca para poder usar 
                                   a função clear_buffer() */
 #include "clientes.h"    /* --> Biblioteca com os 
@@ -85,7 +84,7 @@ void cadastrar_compra(void){
         return;
     }
     
-    // NÃO SEI COMO ARRUMAR ISSO
+    
     while (fread(&client, sizeof(cliente), 1, arq_cliente) > 0){
         if(client.codigo_cliente == buy.codigo_cliente){
             printf("\n%s\n\n", client.nome_cliente);

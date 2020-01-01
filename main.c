@@ -13,7 +13,7 @@
  *                  Caio Elias Emerick Regino <caioregino.147@gmail.com>          *
  *                                                                                *
  * Data de inicio: 21/11/2019                                                     *
- * Data da última modificação: 05/12/2019                                         *
+ * Data da última modificação: 29/12/2019                                         *
  **********************************************************************************/
 
 #include <stdio.h>
@@ -32,7 +32,7 @@
                                          o usuario digite uma 
                                          opção inválida */
 
-void main(void){
+int main(void){
     
     setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
     
@@ -92,4 +92,6 @@ void main(void){
         }
 
     } while(op != 8);         // Sai do programa quando o usuario digitar 8
+    
+    return 0;
 }

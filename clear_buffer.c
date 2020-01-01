@@ -25,8 +25,6 @@
                                   a função clear_buffer() */
 
 void clear_buffer(void){
-    
     char c;
     while((c = getchar()) != '\n' && c != EOF);
-    
 }
