@@ -13,12 +13,12 @@
  *                  Caio Elias Emerick Regino <caioregino.147@gmail.com>          *
  *                                                                                *
  * Data de inicio: 21/11/2019                                                     *
- * Data da última modificação: 29/12/2019                                         *
+ * Data da última modificação: 26/03/2020                                         *
  **********************************************************************************/
 
 #include <stdio.h>
-#include <stdlib.h>          // Biblioteca para poder usar a função system("clear")
-#include <locale.h>         // Biblioteca para poder usar a função setlocale
+#include <stdlib.h>
+#include <locale.h>
 #include "clear_buffer.h"  /* --> Biblioteca para poder usar 
                                   a função clear_buffer() */
 #include "developers.h"  /* --> Biblioteca para poder usar a função
@@ -33,12 +33,10 @@
                                          opção inválida */
 
 int main(void){
-    
-    setlocale(LC_ALL, "Portuguese"); // Permite o uso de acentuações e caracteres especiais
+    setlocale(LC_ALL, "Portuguese");
     
     int op; // Opção a ser escolhida pelo usuário
     
-    //system("cls");  // Limpa o prompt do Windows ao executar o programa
     system("clear"); // Limpa o terminal ao executar o programa
     do{
         printf("**********************MENU**********************\n");
@@ -82,12 +80,10 @@ int main(void){
                 printf("\n\n");
                 break;
             default:
-                //system("cls");       // Limpa o prompt do Windows ao eentrar aqui
                 system("clear");      // Limpa o terminal ao entrar aqui
                 puts(ERROR);         // Mostra uma mensagem de erro para o usuário
                 getchar();          // Semelhante ao system("pause"); do Windows
-                clear_buffer();    // Limpa o buffer
-                //system("cls");  // Limpa o prompt do Windows antes de voltar para o menu
+                clear_buffer();
                 system("clear"); // Limpa o terminal antes de voltar para o menu
         }
 

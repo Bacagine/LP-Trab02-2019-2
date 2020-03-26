@@ -13,19 +13,18 @@
  *                  Caio Elias Emerick Regino <caioregino.147@gmail.com>          *
  *                                                                                *
  * Data de inicio: 02/12/2019                                                     *
- * Data da última modificação: 02/12/2019                                         *
+ * Data da última modificação: 26/03/2020                                         *
  **********************************************************************************/
 
 #include <stdio.h>
-#include <stdlib.h>         // Biblioteca para poder usar a função system("clear")
-#include <locale.h>        // Biblioteca para poder usar a função setlocale
+#include <stdlib.h>
+#include <locale.h>
 #include "clear_buffer.h" /* --> Biblioteca para poder usar 
                                  a função clear_buffer() */
 #include "developers.h" /* --> Biblioteca para poder usar a função
                               developers() */ 
 
 void developers(void){
-    
     setlocale(LC_ALL, "Portuguese");
 
     system("clear");
@@ -46,6 +45,6 @@ void developers(void){
     
     getchar();         /* Pausa a mensagem que está definida em
                         * BUY_SUCESS no terminal */
-    clear_buffer();   // Limpa o buffer
+    clear_buffer();
     system("clear"); // Limpa o terminal antes de voltar para o menu
 }
